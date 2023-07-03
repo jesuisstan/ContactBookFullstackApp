@@ -5,7 +5,6 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@fontsource/montserrat": "^5.0.3",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/joy": "^5.0.0-alpha.83",
@@ -34,7 +33,6 @@
     "react-scripts": "5.0.1",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.12",
-    "typeface-montserrat": "^1.1.13",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

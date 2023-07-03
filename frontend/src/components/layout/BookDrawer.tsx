@@ -12,13 +12,13 @@ import * as colors from '../../styles/bookColors';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Montserrat, Arial, sans-serif' // Specify Montserrat as the first choice
+    fontFamily: 'GT Walsheim Pro, Arial, sans-serif' // Specify Montserrat as the first choice
   }
 });
 
 const burgerItem = {
   transition: 'transform 0.5s ease-in-out, color 0.2s ease-out',
-  fontWeight: 'bold',
+  fontWeight: '500',
   letterSpacing: '0.02857em',
   ':hover': {
     color: colors.BOOK_WHITE,

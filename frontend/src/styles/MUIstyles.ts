@@ -11,7 +11,7 @@ export const modalDialog = {
 };
 
 export const modalHeader = {
-  fontFamily: 'Montserrat, Arial, sans-serif',
+  fontFamily: 'GT Walsheim Pro, Arial, sans-serif',
   fontSize: '1.2rem',
   letterSpacing: '0.02857em',
   textAlign: 'center',
@@ -35,8 +35,8 @@ export const modalClose = {
 };
 
 export const LoadButton = {
-  fontFamily: 'Montserrat, Arial, sans-serif',
-  fontWeight: 'Bold',
+  fontFamily: 'GT Walsheim Pro, Arial, sans-serif',
+  fontWeight: 'bold',
   minWidth: 142,
   borderRadius: '90px',
   backgroundColor: colors.BOOK_ORANGE,
