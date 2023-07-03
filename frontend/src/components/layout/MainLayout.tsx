@@ -7,7 +7,7 @@ const MainLayout = ({ user }: { user: User }) => {
   return (
     <div>
       <Menu user={user} />
-      <div style={{ marginTop: '42px' }}>
+      <div style={{ marginTop: '92px' }}>
         <Outlet />
       </div>
       <Footer />

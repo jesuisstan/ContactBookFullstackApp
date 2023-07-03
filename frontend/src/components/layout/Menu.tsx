@@ -2,6 +2,10 @@ import { NavLink } from 'react-router-dom';
 import User from '../../types/User';
 import Avatar from '@mui/material/Avatar';
 import { useState } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import TodoDrawer from './BookDrawer';
 import LoginModal from '../Login/LoginModal';
 import styles from '../../styles/Menu.module.css';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -11,6 +15,9 @@ import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
 
 const Menu = ({ user }: { user: User }) => {
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const isUltraSmallScreen = useMediaQuery('(max-width:350px)');
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
 
   const authenticate = () => {
@@ -25,14 +32,24 @@ const Menu = ({ user }: { user: User }) => {
     <div>
       <LoginModal open={loginOpen} setOpen={setLoginOpen} />
       <nav className={styles.navbar}>
-        <div className={styles.left}>
-          <NavLink to=".">Home</NavLink>
-          <NavLink to="contactbook">Contact Book</NavLink>
-        </div>
-
+        {isSmallScreen ? (
+          <IconButton
+            sx={{ marginLeft: '42px' }}
+            color="inherit"
+            onClick={() => setDrawerOpen(!drawerOpen)}
+          >
+            <MenuIcon style={{ fill: colors.BOOK_BLACK }} />
+          </IconButton>
+        ) : (
+          <div className={styles.left}>
+            <NavLink to=".">Home</NavLink>
+            <NavLink to="contactbook">Contact Book</NavLink>
+          </div>
+        )}
         <div className={styles.right}>
           <div className={styles.userData}>
-            <Avatar alt="" src={user.avatar} />
+            {!isSmallScreen && user.username}
+            {!isUltraSmallScreen && <Avatar alt="" src={user.avatar} />}
           </div>
           <div>
             <LoadingButton
@@ -48,6 +65,7 @@ const Menu = ({ user }: { user: User }) => {
             </LoadingButton>
           </div>
         </div>
+        <TodoDrawer open={drawerOpen} setOpen={setDrawerOpen} />
       </nav>
     </div>
   );
