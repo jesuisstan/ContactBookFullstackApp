@@ -1,0 +1,9 @@
+{
+  "name": "contact-book-fullstack-app",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "cd backend && yarn install && yarn start"
+  }
+}
+
