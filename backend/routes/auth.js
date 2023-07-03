@@ -118,7 +118,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/auth/login/failed' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect(`${CLIENT_URL}actual`);
+    res.redirect(`${CLIENT_URL}contactbook`);
   }
 );
 
@@ -132,7 +132,7 @@ router.get(
   passport.authenticate('github', { failureRedirect: '/auth/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect(`${CLIENT_URL}actual`);
+    res.redirect(`${CLIENT_URL}contactbook`);
   }
 );
 
