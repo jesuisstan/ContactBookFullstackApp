@@ -31,7 +31,7 @@ export const createContact = async (newContact: Contact) => {
 export const deleteContact = async (ContactToDelete: Contact) => {
   try {
     await axios.delete<Contact>(`${baseUrl}/delete`, {
-      data: { _id: ContactToDelete._id }
+      data: { _id: ContactToDelete!._id }
     });
   } catch (error) {
     errorAlert('Error deleting contact');

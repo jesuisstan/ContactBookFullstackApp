@@ -59,7 +59,7 @@ const ContactBook = ({ user }: { user: User }) => {
           Add new
         </LoadingButton>
         {allContacts.map((contact) => (
-          <div key={contact._id}>
+          <div key={contact!._id}>
             <ContactCard
               contact={contact}
               setRenderingTrigger={setRenderingTrigger}

@@ -1,13 +1,12 @@
-import { SetStateAction, Dispatch, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Drawer, List, ListItem, ListItemText } from '@mui/material';
-import * as colors from '../../styles/bookColors';
-import * as MUI from '../../styles/MUIstyles';
+import { SetStateAction, Dispatch, useState, useEffect } from 'react';
+import { Drawer } from '@mui/material';
 import BirthdayPicker from './BirthdayPicker';
 import NameModifier from './NameModifier';
 import LoadingButton from '@mui/lab/LoadingButton';
-import * as utils from '../../utils/contactsHandlers';
 import { User } from '../../types/User';
+import * as utils from '../../utils/contactsHandlers';
+import * as colors from '../../styles/bookColors';
+import * as MUI from '../../styles/MUIstyles';
 
 const CardDrawer = ({
   user,
@@ -20,30 +19,43 @@ const CardDrawer = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   setRenderingTrigger: React.Dispatch<React.SetStateAction<number>>;
 }) => {
-
-
-  const newCon = {
-    userID: user.id,
-    firstName: 'Actung',
-    lastName: 'Germann',
-    //birthday: '01.08.2187',
-    email: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@gmail.com',
-    comment: 'normal'
-  };
-
-
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [comment, setComment] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   const [loadingSave, setLoadingSave] = useState(false);
 
-  const handleSaveClick = async () => {
-    setLoadingSave(true);
-    await utils.createContact(newCon);
-    setLoadingSave(false);
-    setRenderingTrigger((prev) => prev + 1);
+  const setDefault = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setComment('');
+    setBirthday('');
   };
 
   const handleDrawerToggle = () => {
     setOpen(!open);
+  };
+
+  const handleSubmit = async (event: React.FormEvent): Promise<void> => {
+    event.preventDefault();
+    setLoadingSave(true);
+
+    const newContact = {
+      userID: user.id,
+      firstName: firstName,
+      lastName: lastName,
+      birthday: birthday,
+      email: email,
+      comment: comment
+    };
+
+    await utils.createContact(newContact);
+    setLoadingSave(false);
+    setDefault();
+    setRenderingTrigger((prev) => prev + 1);
   };
 
   return (
@@ -57,22 +69,42 @@ const CardDrawer = ({
       open={open}
       onClose={handleDrawerToggle}
     >
-      <div style={{maxWidth: '300px', textAlign: 'center'}}>
-        <h1>Modifying the contact GG</h1>
-        <NameModifier />
-        <BirthdayPicker />
+      <form style={{ marginTop: '10px' }} onSubmit={handleSubmit}>
+        <div style={{ maxWidth: '300px', textAlign: 'center' }}>
+          <h1>Modifying the contact GG</h1>
+          <NameModifier
+            name={firstName}
+            setName={setFirstName}
+            nameType="First name"
+          />
+          <NameModifier
+            name={lastName}
+            setName={setLastName}
+            nameType="Last name"
+          />
 
-        <LoadingButton
-        loading={loadingSave}
-        //startIcon={<GoogleIcon />}
-        variant="contained"
-        color="inherit"
-        sx={MUI.LoadButton}
-        onClick={handleSaveClick}
-      >
-        Save
-      </LoadingButton>
-      </div>
+          <NameModifier name={email} setName={setEmail} nameType="Email" />
+
+          <NameModifier
+            name={comment}
+            setName={setComment}
+            nameType="Comment"
+          />
+
+          <BirthdayPicker />
+
+          <LoadingButton
+            type="submit"
+            loading={loadingSave}
+            //startIcon={<GoogleIcon />}
+            variant="contained"
+            color="inherit"
+            sx={MUI.LoadButton}
+          >
+            Save
+          </LoadingButton>
+        </div>
+      </form>
     </Drawer>
   );
 };

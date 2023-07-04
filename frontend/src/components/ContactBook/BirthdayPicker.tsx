@@ -3,7 +3,7 @@ The component uses the 'LocalizationProvider' to configure the date picker's loc
 It uses the AdapterDayjs to integrate dayjs as the date library.
 */
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
@@ -19,7 +19,9 @@ const divStyle = {
 };
 
 const BirthdayPicker = () => {
-  const [birthday, setBirthday] = useState<Dayjs | null>(dayjs());
+  //const [birthday, setBirthday] = useState<Dayjs | null>(dayjs());
+  const [birthday, setBirthday] = useState<Dayjs | null>(null);
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
