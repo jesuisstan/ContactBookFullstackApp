@@ -58,7 +58,12 @@ const ContactCard = ({
               {contact.lastName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Birthday: {contact.birthday} <br />
+              {contact.birthday && (
+                <>
+                  Birthday: {contact.birthday}
+                  <br />
+                </>
+              )}
               Email: {contact.email}
             </Typography>
           </CardContent>

@@ -19,7 +19,7 @@ const contactSchema = new mongoose.Schema({
   },
   birthday: {
     type: String,
-    required: true
+    required: false
   },
   comment: {
     type: String,

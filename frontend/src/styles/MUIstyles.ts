@@ -68,6 +68,7 @@ export const burgerItem = {
 export const contactCard = {
   maxWidth: 500,
   minWidth: 300,
+  minHeight: 205,
   color: colors.BOOK_BLACK,
   border: '1px solid',
   transition: 'border 0.2s ease-in-out',
@@ -85,5 +86,5 @@ export const slotPropsForData = {
   paddingRight: '12px',
   backgroundColor: '#f1f2f6',
   borderRadius: '8px',
-  height: '48px',
+  height: '48px'
 };
