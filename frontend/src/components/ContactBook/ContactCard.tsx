@@ -1,16 +1,17 @@
+import { useState } from 'react';
+import { CardActionArea, CardActions, ThemeProvider } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions, ThemeProvider } from '@mui/material';
-import { Contact } from '../../types/Contact';
 import DeleteIcon from '@mui/icons-material/Delete';
-import * as utils from '../../utils/contactsHandlers';
-import { useState } from 'react';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import { styled } from '@mui/material/styles';
+import { Contact } from '../../types/Contact';
+import * as utils from '../../utils/contactsHandlers';
+import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -48,7 +49,7 @@ const ContactCard = ({
 
   return (
     <ThemeProvider theme={MUI.theme}>
-      <Card sx={{ maxWidth: 500, minWidth: 300 }}>
+      <Card sx={MUI.contactCard} onClick={() => console.log('OPEN')}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -68,10 +69,10 @@ const ContactCard = ({
             title="delete contact"
             onClick={handleDeleteClick}
           >
-            <DeleteIcon />
+            <DeleteIcon sx={{ color: colors.BOOK_ORANGE }} />
           </IconButton>
           <IconButton aria-label="modify" title="modify contact">
-            <DriveFileRenameOutlineIcon />
+            <DriveFileRenameOutlineIcon sx={{ color: colors.BOOK_GREEN }} />
           </IconButton>
           <ExpandMore
             expand={expanded}
@@ -79,12 +80,14 @@ const ContactCard = ({
             aria-expanded={expanded}
             aria-label="show more"
           >
-            <ExpandMoreIcon />
+            <ExpandMoreIcon sx={{ color: colors.BOOK_GREEN }} />
           </ExpandMore>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography variant="body2">{contact.comment}</Typography>
+            <Typography variant="body2">
+              {contact.comment ? contact.comment : '*no comment left'}
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>

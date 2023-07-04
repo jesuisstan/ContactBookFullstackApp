@@ -64,3 +64,16 @@ export const burgerItem = {
     cursor: 'pointer'
   }
 };
+
+export const contactCard = {
+  maxWidth: 500,
+  minWidth: 300,
+  color: colors.BOOK_BLACK,
+  border: '1px solid',
+  transition: 'border 0.2s ease-in-out',
+  borderColor: colors.BOOK_GREEN,
+  ':hover': {
+    cursor: 'pointer',
+    borderColor: colors.BOOK_ORANGE
+  }
+};

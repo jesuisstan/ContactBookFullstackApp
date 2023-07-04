@@ -4,7 +4,7 @@ import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
 
-const BookDrawer = ({
+const MenuDrawer = ({
   open,
   setOpen
 }: {
@@ -44,7 +44,7 @@ const BookDrawer = ({
           }}
         >
           <ListItemText
-            primary="ContactsG"
+            primary="Contacts"
             disableTypography
             sx={MUI.burgerItem}
           />
@@ -54,4 +54,4 @@ const BookDrawer = ({
   );
 };
 
-export default BookDrawer;
+export default MenuDrawer;

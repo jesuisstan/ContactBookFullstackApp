@@ -5,7 +5,7 @@ import { useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import TodoDrawer from './BookDrawer';
+import MenuDrawer from './MenuDrawer';
 import LoginModal from '../Login/LoginModal';
 import styles from '../../styles/Menu.module.css';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -17,7 +17,7 @@ import * as colors from '../../styles/bookColors';
 const Menu = ({ user }: { user: User }) => {
   const isSmallScreen = useMediaQuery('(max-width:600px)');
   const isUltraSmallScreen = useMediaQuery('(max-width:350px)');
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
 
   const authenticate = () => {
@@ -36,7 +36,7 @@ const Menu = ({ user }: { user: User }) => {
           <IconButton
             sx={{ marginLeft: '42px' }}
             color="inherit"
-            onClick={() => setDrawerOpen(!drawerOpen)}
+            onClick={() => setMenuDrawerOpen(!menuDrawerOpen)}
           >
             <MenuIcon style={{ fill: colors.BOOK_BLACK }} />
           </IconButton>
@@ -65,7 +65,7 @@ const Menu = ({ user }: { user: User }) => {
             </LoadingButton>
           </div>
         </div>
-        <TodoDrawer open={drawerOpen} setOpen={setDrawerOpen} />
+        <MenuDrawer open={menuDrawerOpen} setOpen={setMenuDrawerOpen} />
       </nav>
     </div>
   );
