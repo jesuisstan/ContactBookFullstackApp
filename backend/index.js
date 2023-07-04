@@ -20,7 +20,7 @@ mongoose
 app.use(
   cookieSession({
     name: 'session',
-    keys: ['PongTheGame'],
+    keys: ['ContactBookFullstackApp'],
     maxAge: 24 * 60 * 60 * 100
   })
 );

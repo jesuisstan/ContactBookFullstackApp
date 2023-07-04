@@ -1,15 +1,31 @@
 const contactModel = require('../models/contactModel');
 
-module.exports.getContact = async (req, res) => {
-  const contact = await contactModel.find();
-  res.send(contact);
+//module.exports.getAllContacts = async (req, res) => {
+//  const contacts = await contactModel.find();
+//  res.send(contacts);
+//};
+
+module.exports.getAllContacts = async (req, res) => {
+  const { userId } = req.params; // Accessing the userId from req.params
+
+  if (userId) {
+    try {
+      const contacts = await contactModel.find({ userID: userId });
+      res.send(contacts);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    res.status(400).send('User ID is required.'); // Send a 400 Bad Request if userId is not provided
+  }
 };
 
 module.exports.saveContact = (req, res) => {
   console.log(req.body);
-  const { UserID, FirstName, LastName, Email, Birthday, Comment } = req.body;
+  const { userID, firstName, lastName, email, birthday, comment } = req.body;
 
-  contactModel.create({ UserID, FirstName, LastName, Email, Birthday, Comment })
+  contactModel.create({ userID, firstName, lastName, email, birthday, comment })
     .then((data) => {
       console.log('Added Successfully...');
       console.log(data);

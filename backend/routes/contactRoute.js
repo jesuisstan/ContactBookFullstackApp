@@ -1,10 +1,10 @@
 const { Router } = require("express");
 
-const { getContact, saveContact, deleteContact, updateContact } = require("../controllers/contactController");
+const { getAllContacts, saveContact, deleteContact, updateContact } = require("../controllers/contactController");
 
 const router = Router();
 
-router.get("/getall", getContact);
+router.get("/getall/:userId", getAllContacts);
 
 router.post("/save", saveContact);
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/layout/MainLayout';
 import Home from './pages/Home.page';
-import ContactBook from './pages/ContactBook.page';
+import ContactBook from './components/ContactBook/ContactBook';
 import NotFound from './pages/NotFound.page';
 import axios from 'axios';
 import User from './types/User';
@@ -38,7 +38,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainLayout user={user} />}>
             <Route index={true} element={<Home />} />
-            <Route path="contactbook" element={<ContactBook />} />
+            <Route path="contactbook" element={<ContactBook user={user} />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

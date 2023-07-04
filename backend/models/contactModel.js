@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
-  UserID: {
+  userID: {
     type: String,
     required: true
   },
-  FirstName: {
+  firstName: {
     type: String,
     required: true
   },
-  LastName: {
+  lastName: {
     type: String,
     required: true
   },
-  Email: {
+  email: {
     type: String,
     required: true
   },
-  Birthday: {
+  birthday: {
     type: String,
     required: true
   },
-  Comment: {
+  comment: {
     type: String,
     required: false
   }
