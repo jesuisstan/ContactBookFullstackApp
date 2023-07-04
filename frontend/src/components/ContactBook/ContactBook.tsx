@@ -7,14 +7,17 @@ import { User } from '../../types/User';
 import { Contact } from '../../types/Contact';
 import errorAlert from '../../utils/errorAlert';
 import * as utils from '../../utils/contactsHandlers';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const baseUrl = 'http://localhost:9999';
 
 const ContactBook = ({ user }: { user: User }) => {
-  const [loading, setLoading] = useState(false);
+  const [loadingSave, setLoadingSave] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
+
   const [saveTrigger, setSaveTrigger] = useState(0);
   const [allContacts, setAllContacts] = useState<Contact[]>([]);
-
+  console.log(allContacts);
   const newCon = {
     userID: user.id,
     firstName: 'New',
@@ -24,26 +27,22 @@ const ContactBook = ({ user }: { user: User }) => {
     comment: 'normal'
   };
 
-  const handleNewClick = async () => {
-    setLoading(true);
+  const handleSaveClick = async () => {
+    setLoadingSave(true);
     await utils.createContact(newCon);
-    setLoading(false);
+    setLoadingSave(false);
+    setSaveTrigger((prev) => prev + 1);
+  };
+
+  const handleDeleteClick = async () => {
+    setLoadingDelete(true);
+    await utils.deleteContact(allContacts[2]);
+    setLoadingDelete(false);
     setSaveTrigger((prev) => prev + 1);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<Contact[]>(
-          `${baseUrl}/getall/${user.id}`
-        );
-        setAllContacts(response.data);
-      } catch (error) {
-        errorAlert('Error retrieving contacts');
-      }
-    };
-
-    if (user.provider) fetchData();
+    if (user.provider) utils.getAllContacts({ user, setAllContacts });
   }, [user, saveTrigger]);
 
   return (
@@ -56,12 +55,12 @@ const ContactBook = ({ user }: { user: User }) => {
       }}
     >
       <LoadingButton
-        loading={loading}
+        loading={loadingSave}
         //startIcon={<GoogleIcon />}
         variant="contained"
         color="inherit"
         sx={MUI.LoadButton}
-        onClick={handleNewClick}
+        onClick={handleSaveClick}
       >
         New
       </LoadingButton>
@@ -70,6 +69,16 @@ const ContactBook = ({ user }: { user: User }) => {
           <h1>{contact.lastName}</h1>
           <p>{contact.birthday}</p>
           <p>{contact.email}</p>
+          <LoadingButton
+            loading={loadingDelete}
+            startIcon={<DeleteIcon />}
+            variant="contained"
+            color="inherit"
+            sx={MUI.LoadButton}
+            onClick={handleDeleteClick}
+          >
+            Del
+          </LoadingButton>
         </div>
       ))}
     </div>

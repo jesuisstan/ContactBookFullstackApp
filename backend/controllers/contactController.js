@@ -39,7 +39,10 @@ module.exports.deleteContact = (req, res) => {
 
   contactModel.findByIdAndDelete(_id)
     .then(() => res.set(201).send('Deleted Successfully...'))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send('Error deleting contact...');
+    });
 };
 
 module.exports.updateContact = (req, res) => {
