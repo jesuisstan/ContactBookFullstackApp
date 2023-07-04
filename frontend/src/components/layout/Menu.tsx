@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import User from '../../types/User';
+import { User } from '../../types/User';
 import Avatar from '@mui/material/Avatar';
 import { useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';

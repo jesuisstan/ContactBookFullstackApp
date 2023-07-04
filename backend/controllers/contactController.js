@@ -22,13 +22,11 @@ module.exports.getAllContacts = async (req, res) => {
 };
 
 module.exports.saveContact = (req, res) => {
-  console.log(req.body);
   const { userID, firstName, lastName, email, birthday, comment } = req.body;
 
   contactModel.create({ userID, firstName, lastName, email, birthday, comment })
     .then((data) => {
       console.log('Added Successfully...');
-      console.log(data);
       res.send(data);
     })
     .catch((err) => console.log(err));

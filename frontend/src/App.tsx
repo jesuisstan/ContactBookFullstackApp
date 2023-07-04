@@ -5,7 +5,7 @@ import Home from './pages/Home.page';
 import ContactBook from './components/ContactBook/ContactBook';
 import NotFound from './pages/NotFound.page';
 import axios from 'axios';
-import User from './types/User';
+import { User } from './types/User';
 import './styles/index.css';
 
 const url = 'http://localhost:9999/auth/getuser';
