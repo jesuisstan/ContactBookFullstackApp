@@ -1,16 +1,32 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { CardActionArea, CardActions, ThemeProvider } from '@mui/material';
 import { Contact } from '../../types/Contact';
-import LoadingButton from '@mui/lab/LoadingButton';
-import * as MUI from '../../styles/MUIstyles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import * as utils from '../../utils/contactsHandlers';
 import { useState } from 'react';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Collapse from '@mui/material/Collapse';
+import { styled } from '@mui/material/styles';
+import * as MUI from '../../styles/MUIstyles';
+
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
+
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest
+  })
+}));
 
 const ContactCard = ({
   contact,
@@ -19,47 +35,60 @@ const ContactCard = ({
   contact: Contact;
   setRenderingTrigger: React.Dispatch<React.SetStateAction<number>>;
 }) => {
-  const [loadingDelete, setLoadingDelete] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   const handleDeleteClick = async () => {
-    setLoadingDelete(true);
     await utils.deleteContact(contact);
-    setLoadingDelete(false);
     setRenderingTrigger((prev) => prev + 1);
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {contact.firstName} {contact.lastName}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Birthday: {contact.birthday} <br />
-            Email: {contact.email} <br />
-            {contact.comment}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <IconButton
-          aria-label="delete"
-          title="delete contact"
-          onClick={handleDeleteClick}
-        >
-          <DeleteIcon />
-        </IconButton>
-				<IconButton aria-label="modify"
-          title="modify contact"
-					>
-          <DriveFileRenameOutlineIcon />
-        </IconButton>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
-    </Card>
+    <ThemeProvider theme={MUI.theme}>
+      <Card sx={{ maxWidth: 500, minWidth: 300 }}>
+        <CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {contact.firstName}
+              <br />
+              {contact.lastName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Birthday: {contact.birthday} <br />
+              Email: {contact.email}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions disableSpacing>
+          <IconButton
+            aria-label="delete"
+            title="delete contact"
+            onClick={handleDeleteClick}
+          >
+            <DeleteIcon />
+          </IconButton>
+          <IconButton aria-label="modify" title="modify contact">
+            <DriveFileRenameOutlineIcon />
+          </IconButton>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography variant="body2">{contact.comment}</Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </ThemeProvider>
   );
 };
 

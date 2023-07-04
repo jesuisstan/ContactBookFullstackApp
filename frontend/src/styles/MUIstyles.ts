@@ -1,4 +1,11 @@
 import * as colors from './bookColors';
+import { createTheme } from '@mui/material';
+
+export const theme = createTheme({
+  typography: {
+    fontFamily: 'GT Walsheim Pro, Arial, sans-serif' // Specify Montserrat as the first choice
+  }
+});
 
 export const modalDialog = {
   width: 'auto',
@@ -45,5 +52,15 @@ export const LoadButton = {
   ':hover': {
     color: colors.BOOK_WHITE,
     bgcolor: colors.BOOK_BLACK
+  }
+};
+
+export const burgerItem = {
+  transition: 'transform 0.5s ease-in-out, color 0.2s ease-out',
+  fontWeight: '500',
+  letterSpacing: '0.02857em',
+  ':hover': {
+    color: colors.BOOK_WHITE,
+    cursor: 'pointer'
   }
 };
