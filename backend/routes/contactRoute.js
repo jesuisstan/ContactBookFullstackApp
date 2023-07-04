@@ -8,7 +8,7 @@ router.get("/getall/:userId", getAllContacts);
 
 router.post("/save", saveContact);
 
-router.post("/delete", deleteContact);
+router.delete("/delete", deleteContact);
 
 router.post("/update", updateContact);
 

@@ -17,7 +17,7 @@ const ContactBook = ({ user }: { user: User }) => {
 
   const [saveTrigger, setSaveTrigger] = useState(0);
   const [allContacts, setAllContacts] = useState<Contact[]>([]);
-  console.log(allContacts);
+
   const newCon = {
     userID: user.id,
     firstName: 'New',

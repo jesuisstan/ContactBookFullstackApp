@@ -38,7 +38,7 @@ module.exports.deleteContact = (req, res) => {
   console.log('id ---> ', _id);
 
   contactModel.findByIdAndDelete(_id)
-    .then(() => res.set(201).send('Deleted Successfully...'))
+    .then(() => res.status(201).send('Deleted Successfully...'))
     .catch((err) => {
       console.log(err);
       res.status(500).send('Error deleting contact...');
