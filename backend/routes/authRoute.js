@@ -2,7 +2,6 @@ const router = require('express').Router();
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
 const passport = require('passport');
-const chalk = require('chalk');
 const session = require('express-session');
 
 const CLIENT_URL = 'http://localhost:3333/';
@@ -37,14 +36,12 @@ passport.use(
       callbackURL: '/auth/google/callback'
     },
     function (accessToken, refreshToken, profile, cb) {
-      console.log(chalk.blue(JSON.stringify(profile)));
       user = {
         id: profile.id,
         username: profile.displayName,
         avatar: profile.photos[0].value,
         provider: profile.provider
       };
-      console.log('user is: \n' + user.username);
       return cb(null, profile);
     }
   )
@@ -69,6 +66,10 @@ passport.use(
   )
 );
 
+router.get('/', (req, res) => {
+  res.send('Bonjour from ContactBookFullstackApp');
+});
+
 router.get('/auth/login/success', (req, res) => {
   if (req.user) {
     res.status(200).json({
@@ -85,10 +86,6 @@ router.get('/auth/login/failed', (req, res) => {
     success: false,
     message: 'failure'
   });
-});
-
-router.get('/auth', (req, res) => {
-  res.send('Bonjour');
 });
 
 router.get('/auth/getuser', (req, res) => {
