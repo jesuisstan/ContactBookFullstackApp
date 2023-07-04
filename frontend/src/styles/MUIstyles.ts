@@ -37,7 +37,7 @@ export const modalClose = {
 export const LoadButton = {
   fontFamily: 'GT Walsheim Pro, Arial, sans-serif',
   fontWeight: 'bold',
-  minWidth: 120,
+  minWidth: 125,
   borderRadius: '90px',
   backgroundColor: colors.BOOK_ORANGE,
   color: colors.BOOK_BLACK,

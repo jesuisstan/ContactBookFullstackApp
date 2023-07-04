@@ -8,12 +8,13 @@ import { Contact } from '../../types/Contact';
 import errorAlert from '../../utils/errorAlert';
 import * as utils from '../../utils/contactsHandlers';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ContactCard from './ContactCard';
 
 const baseUrl = 'http://localhost:9999';
 
 const ContactBook = ({ user }: { user: User }) => {
   const [loadingSave, setLoadingSave] = useState(false);
-  const [loadingDelete, setLoadingDelete] = useState(false);
+  const [renderingTrigger, setRenderingTrigger] = useState(0);
 
   const [saveTrigger, setSaveTrigger] = useState(0);
   const [allContacts, setAllContacts] = useState<Contact[]>([]);
@@ -34,16 +35,9 @@ const ContactBook = ({ user }: { user: User }) => {
     setSaveTrigger((prev) => prev + 1);
   };
 
-  const handleDeleteClick = async () => {
-    setLoadingDelete(true);
-    await utils.deleteContact(allContacts[2]);
-    setLoadingDelete(false);
-    setSaveTrigger((prev) => prev + 1);
-  };
-
   useEffect(() => {
     if (user.provider) utils.getAllContacts({ user, setAllContacts });
-  }, [user, saveTrigger]);
+  }, [user, saveTrigger, renderingTrigger]);
 
   return (
     <div
@@ -66,19 +60,10 @@ const ContactBook = ({ user }: { user: User }) => {
       </LoadingButton>
       {allContacts.map((contact) => (
         <div key={contact._id}>
-          <h1>{contact.lastName}</h1>
-          <p>{contact.birthday}</p>
-          <p>{contact.email}</p>
-          <LoadingButton
-            loading={loadingDelete}
-            startIcon={<DeleteIcon />}
-            variant="contained"
-            color="inherit"
-            sx={MUI.LoadButton}
-            onClick={handleDeleteClick}
-          >
-            Del
-          </LoadingButton>
+          <ContactCard
+            contact={contact}
+            setRenderingTrigger={setRenderingTrigger}
+          />
         </div>
       ))}
     </div>
