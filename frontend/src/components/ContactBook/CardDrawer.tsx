@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
+import BirthdayPicker from './BirthdayPicker';
 
 const CardDrawer = ({
   open,
@@ -30,6 +31,7 @@ const CardDrawer = ({
     >
       <div>
         <h1>Modifying the contact GG</h1>
+        <BirthdayPicker />
       </div>
     </Drawer>
   );

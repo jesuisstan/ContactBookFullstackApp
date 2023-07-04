@@ -42,7 +42,7 @@ export const modalClose = {
 };
 
 export const LoadButton = {
-  fontFamily: 'GT Walsheim Pro, Arial, sans-serif',
+  fontFamily: '"GT Walsheim Pro", Arial, sans-serif',
   fontWeight: 'bold',
   minWidth: 125,
   borderRadius: '90px',
@@ -76,4 +76,14 @@ export const contactCard = {
     cursor: 'pointer',
     borderColor: colors.BOOK_ORANGE
   }
+};
+
+export const slotPropsForData = {
+  fontFamily: '"GT Walsheim Pro", Arial, sans-serif',
+  color: colors.BOOK_BLACK,
+  paddingLeft: '12px',
+  paddingRight: '12px',
+  backgroundColor: '#f1f2f6',
+  borderRadius: '8px',
+  height: '48px',
 };
