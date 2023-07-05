@@ -8,6 +8,7 @@ import errorAlert from '../../utils/errorAlert';
 import * as utils from '../../utils/contactsHandlers';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
+import FloatingButton from '../Layout/FloatingButton';
 
 const ContactBook = ({ user }: { user: User }) => {
   const [loadingSave, setLoadingSave] = useState(false);
@@ -36,6 +37,7 @@ const ContactBook = ({ user }: { user: User }) => {
           gap: '21px'
         }}
       >
+        <FloatingButton />
         <LoadingButton
           loading={loadingSave}
           //startIcon={<GoogleIcon />}

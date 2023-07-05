@@ -5,6 +5,19 @@ import { User } from '../types/User';
 
 const baseUrl = 'http://localhost:9999';
 
+export const getUserData = (
+  setUser: React.Dispatch<React.SetStateAction<User>>
+) => {
+  axios.get(`${baseUrl}/auth/getuser`).then(
+    (response) => {
+      setUser(response.data);
+    },
+    (error) => {
+      errorAlert('Authentication failed! Try again.');
+    }
+  );
+};
+
 export const getAllContacts = async ({
   user,
   setAllContacts
