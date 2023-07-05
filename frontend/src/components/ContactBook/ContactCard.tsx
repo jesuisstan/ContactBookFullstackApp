@@ -49,9 +49,9 @@ const ContactCard = ({
 
   return (
     <ThemeProvider theme={MUI.theme}>
-      <Card sx={MUI.contactCard} onClick={() => console.log('OPEN')}>
+      <Card sx={MUI.contactCard}>
         <CardActionArea>
-          <CardContent>
+          <CardContent onClick={() => console.log('OPEN')}>
             <Typography gutterBottom variant="h5" component="div">
               {contact!.firstName}
               <br />

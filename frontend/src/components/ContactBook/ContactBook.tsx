@@ -9,14 +9,14 @@ import ContactCard from './ContactCard';
 import * as utils from '../../utils/contactsHandlers';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
-import CardDrawer from './CardDrawer';
+import ContactForm from './ContactForm';
 
 const baseUrl = 'http://localhost:9999';
 
 const ContactBook = ({ user }: { user: User }) => {
   const [loadingSave, setLoadingSave] = useState(false);
   const [renderingTrigger, setRenderingTrigger] = useState(0);
-  const [cardDrawerOpen, setCardDrawerOpen] = useState(false);
+  const [contactFormOpen, setContactFormOpen] = useState(false);
 
   const [allContacts, setAllContacts] = useState<Contact[]>([]);
 
@@ -25,7 +25,7 @@ const ContactBook = ({ user }: { user: User }) => {
     //await utils.createContact(newCon);
     //setLoadingSave(false);
     //setRenderingTrigger((prev) => prev + 1);
-    setCardDrawerOpen(true);
+    setContactFormOpen(true);
   };
 
   useEffect(() => {
@@ -34,9 +34,9 @@ const ContactBook = ({ user }: { user: User }) => {
 
   return (
     <>
-      <CardDrawer
-        open={cardDrawerOpen}
-        setOpen={setCardDrawerOpen}
+      <ContactForm
+        open={contactFormOpen}
+        setOpen={setContactFormOpen}
         user={user}
         setRenderingTrigger={setRenderingTrigger}
       />

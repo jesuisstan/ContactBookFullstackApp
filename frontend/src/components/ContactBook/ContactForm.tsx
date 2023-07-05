@@ -8,7 +8,7 @@ import * as utils from '../../utils/contactsHandlers';
 import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
 
-const CardDrawer = ({
+const ContactForm = ({
   user,
   open,
   setOpen,
@@ -109,4 +109,4 @@ const CardDrawer = ({
   );
 };
 
-export default CardDrawer;
+export default ContactForm;
