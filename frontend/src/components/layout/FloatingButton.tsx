@@ -1,17 +1,21 @@
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import NavigationIcon from '@mui/icons-material/Navigation';
 
-const FloatingButton = () => {
+const FloatingButton = ({ onClick }: { onClick: () => void }) => {
   return (
-
-      <Fab color="secondary" aria-label="edit">
-        <EditIcon />
+    <Box
+      sx={{
+        position: 'fixed',
+        bottom: '60px',
+        left: '60px',
+      }}
+    >
+      <Fab color="secondary" aria-label="edit" onClick={onClick}>
+        <AddIcon />
       </Fab>
-
+    </Box>
   );
 }
 
-export default FloatingButton
+export default FloatingButton;

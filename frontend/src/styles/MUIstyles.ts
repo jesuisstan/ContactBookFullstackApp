@@ -66,9 +66,8 @@ export const burgerItem = {
 };
 
 export const contactCard = {
-  maxWidth: 500,
+  maxWidth: 480,
   minWidth: 300,
-  minHeight: 205,
   color: colors.BOOK_BLACK,
   border: '1px solid',
   transition: 'border 0.2s ease-in-out',

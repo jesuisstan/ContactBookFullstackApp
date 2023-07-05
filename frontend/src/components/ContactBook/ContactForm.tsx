@@ -46,9 +46,9 @@ const ContactForm = ({
       name: 'firstName',
       type: 'text',
       placeholder: 'First name',
-      errorMessage: 'Max 20 characters. Allowed: A-Z _ - a-z',
-      label: 'First name',
-      pattern: '^[A-Za-z0-9]{1,20}$',
+      errorMessage: 'Max 20 characters. Allowed: A-Z a-z',
+      label: '* First name',
+      pattern: '^[A-Za-z]{1,20}$',
       required: true
     },
     {
@@ -56,9 +56,9 @@ const ContactForm = ({
       name: 'lastName',
       type: 'text',
       placeholder: 'Last name',
-      errorMessage: 'Max 20 characters. Allowed: A-Z _ - a-z',
-      label: 'Last name',
-      pattern: '^[A-Za-z0-9]{1,20}$',
+      errorMessage: 'Max 20 characters. Allowed: A-Z a-z',
+      label: '* Last name',
+      pattern: '^[A-Za-z]{1,20}$',
       required: true
     },
     {
@@ -66,8 +66,9 @@ const ContactForm = ({
       name: 'email',
       type: 'email',
       placeholder: 'Email',
-      errorMessage: 'It should be a valid email address!',
-      label: 'Email',
+      errorMessage: 'Should be a valid email with max length 42',
+      label: '* Email',
+      pattern: '^.{5,42}$',
       required: true
     },
     {
@@ -75,7 +76,8 @@ const ContactForm = ({
       name: 'birthday',
       type: 'date',
       placeholder: 'Birthday',
-      label: 'Birthday'
+      label: 'Birthday',
+      max: new Date().toISOString().split('T')[0]
     },
     {
       id: 5,

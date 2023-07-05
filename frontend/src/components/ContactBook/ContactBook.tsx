@@ -37,17 +37,7 @@ const ContactBook = ({ user }: { user: User }) => {
           gap: '21px'
         }}
       >
-        <FloatingButton />
-        <LoadingButton
-          loading={loadingSave}
-          //startIcon={<GoogleIcon />}
-          variant="contained"
-          color="inherit"
-          sx={MUI.LoadButton}
-          onClick={() => setContactFormOpen(true)}
-        >
-          Add new
-        </LoadingButton>
+        <FloatingButton onClick={() => setContactFormOpen(true)}/>
         {allContacts.map((contact) => (
           <div key={contact._id}>
             <ContactCard

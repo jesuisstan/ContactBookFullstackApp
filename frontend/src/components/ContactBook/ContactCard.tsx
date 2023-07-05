@@ -58,18 +58,7 @@ const ContactCard = ({
         <CardActionArea>
           <CardContent onClick={() => setOpen(true)}>
             <Typography gutterBottom variant="h5" component="div">
-              {contact.firstName}
-              <br />
-              {contact.lastName}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {contact.birthday && (
-                <>
-                  Birthday: {contact.birthday}
-                  <br />
-                </>
-              )}
-              Email: {contact.email}
+              {contact.firstName} {contact.lastName}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -99,8 +88,18 @@ const ContactCard = ({
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography variant="body2">
-              {contact.comment ? contact.comment : '*no comment left'}
+            <Typography variant="body1" textAlign={'left'} >
+              Email: {contact.email}
+              <br />
+              {contact.birthday && (
+                <>
+                  Birthday: {contact.birthday}
+                  <br />
+                </>
+              )}
+              {contact.comment
+                ? `Comment: ${contact.comment}`
+                : '*no comment left'}
             </Typography>
           </CardContent>
         </Collapse>
