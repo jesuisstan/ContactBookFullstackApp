@@ -58,3 +58,14 @@ export const updateContact = async (newContact: Contact) => {
     errorAlert('Error updating contact');
   }
 };
+
+export const searchContactsByLastName = (
+  contacts: Contact[],
+  lastName: string
+): Contact[] => {
+  const lowerCaseLastName = lastName.toLowerCase();
+
+  return contacts.filter(
+    (contact) => contact.lastName.toLocaleLowerCase() === lowerCaseLastName
+  );
+};
