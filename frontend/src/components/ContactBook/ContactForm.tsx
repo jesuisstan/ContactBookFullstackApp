@@ -2,11 +2,13 @@ import { SetStateAction, Dispatch, useState, useEffect } from 'react';
 import { Drawer } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { User } from '../../types/User';
+import { Contact } from '../../types/Contact';
+import FormInput from './FormInput';
+import SaveIcon from '@mui/icons-material/Save';
+import SaveAsIcon from '@mui/icons-material/SaveAs';
 import * as utils from '../../utils/contactsHandlers';
 import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
-import { Contact } from '../../types/Contact';
-import FormInput from './FormInput';
 
 type FormValues = {
   firstName: string;
@@ -102,17 +104,13 @@ const ContactForm = ({
       await utils.updateContact(newContact);
     } else {
       await utils.createContact(newContact);
-      setTimeout(
-        () =>
-          setValues({
-            firstName: '',
-            lastName: '',
-            email: '',
-            birthday: '',
-            comment: ''
-          }),
-        3000
-      );
+      setValues({
+        firstName: '',
+        lastName: '',
+        email: '',
+        birthday: '',
+        comment: ''
+      });
     }
     setLoadingSave(false);
     setRenderingTrigger((prev) => prev + 1);
@@ -134,25 +132,33 @@ const ContactForm = ({
       onClose={handleDrawerToggle}
     >
       <form onSubmit={handleSubmit}>
-        <h1>Contact</h1>
-        {inputs.map((input) => (
-          <FormInput
-            key={input.id}
-            {...input}
-            value={values[input.name as keyof FormValues]}
-            onChange={onChange}
-          />
-        ))}
-        <LoadingButton
-          type="submit"
-          loading={loadingSave}
-          //startIcon={<GoogleIcon />}
-          variant="contained"
-          color="inherit"
-          sx={MUI.LoadButton}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '21px',
+            margin: '21px 21px 0'
+          }}
         >
-          {contact ? 'Change' : 'Create'}
-        </LoadingButton>
+          {inputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={values[input.name as keyof FormValues]}
+              onChange={onChange}
+            />
+          ))}
+          <LoadingButton
+            type="submit"
+            loading={loadingSave}
+            startIcon={contact ? <SaveAsIcon /> : <SaveIcon />}
+            variant="contained"
+            color="inherit"
+            sx={MUI.LoadButton}
+          >
+            {contact ? 'Modify current' : 'Create new'}
+          </LoadingButton>
+        </div>
       </form>
     </Drawer>
   );

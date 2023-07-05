@@ -1,25 +1,26 @@
 import { useState } from 'react';
-import './formInput.css';
+import styles from '../../styles/FormInput.module.css';
 
 const FormInput = (props: any) => {
   const [focused, setFocused] = useState(false);
   const { label, errorMessage, onChange, id, ...inputProps } = props;
 
   const handleFocus = (event: React.FormEvent) => {
-    setFocused(true);
+    setFocused(false); // change to true if error message is desired to be shown onBlur too
   };
 
   return (
-    <div className="formInput">
-      <label>{label}</label>
+    <div className={styles.formInput}>
+      <label className={styles.label}>{label}:</label>
       <input
         {...inputProps}
         onChange={onChange}
         onBlur={handleFocus}
         onFocus={() => setFocused(true)}
         focused={focused.toString()}
+        className={styles.input}
       />
-      <span className="helper">{errorMessage}</span>
+      <span className={styles.helper}>{errorMessage}</span>
     </div>
   );
 };

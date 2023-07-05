@@ -1,0 +1,38 @@
+@import './bookColors.css';
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+.input {
+  padding: 12px;
+  margin: 5px 0px;
+  border-radius: 5px;
+  border: 1px solid var(--BOOK_GREEN);
+}
+
+.input:hover {
+  border-color: var(--BOOK_ORANGE);
+}
+
+.label {
+  font-size: 12px;
+  color: var(--BOOK_GREEN);
+}
+
+.helper {
+  font-size: 12px;
+  padding: 3px;
+  color: var(--BOOK_ORANGE);
+  display: none;
+}
+
+/*input:invalid[focused='true'] {
+  border: 1px solid var(--BOOK_ORANGE);
+}*/
+
+input:invalid[focused='true'] ~ span {
+  display: block;
+}
