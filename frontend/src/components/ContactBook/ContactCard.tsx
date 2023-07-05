@@ -57,7 +57,12 @@ const ContactCard = ({
       <Card sx={MUI.contactCard}>
         <CardActionArea>
           <CardContent onClick={() => setOpen(true)}>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
+            >
               {contact.firstName} {contact.lastName}
             </Typography>
           </CardContent>
@@ -88,7 +93,11 @@ const ContactCard = ({
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography variant="body1" textAlign={'left'} >
+            <Typography
+              variant="body1"
+              textAlign={'left'}
+              sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
+            >
               Email: {contact.email}
               <br />
               {contact.birthday && (
