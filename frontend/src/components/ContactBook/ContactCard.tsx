@@ -63,7 +63,9 @@ const ContactCard = ({
               component="div"
               sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
             >
-              {contact.firstName} {contact.lastName}
+              {contact.firstName}
+              <br />
+              {contact.lastName}
             </Typography>
           </CardContent>
         </CardActionArea>

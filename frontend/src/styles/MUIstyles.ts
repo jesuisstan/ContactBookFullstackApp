@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   typography: {
-    fontFamily: 'GT Walsheim Pro, Arial, sans-serif' // Specify Montserrat as the first choice
+    fontFamily: 'GT Walsheim Pro, Arial, sans-serif' // Specify Walsheim as the first choice
   }
 });
 
@@ -12,7 +12,7 @@ export const modalDialog = {
   maxWidth: '442px',
   minWidth: '300px',
   border: '0px solid #000',
-  bgcolor: 'whitesmoke',
+  bgcolor: colors.BOOK_WHITE,
   borderRadius: '4px',
   paddingBottom: '30px'
 };
@@ -36,7 +36,7 @@ export const modalClose = {
   bgcolor: colors.BOOK_ORANGE,
   transition: 'background-color 0.2s, color 0.2s ease-in-out',
   ':hover': {
-    color: 'whitesmoke',
+    color: colors.BOOK_WHITE,
     bgcolor: colors.BOOK_BLACK
   }
 };
@@ -78,12 +78,3 @@ export const contactCard = {
   }
 };
 
-export const slotPropsForData = {
-  fontFamily: '"GT Walsheim Pro", Arial, sans-serif',
-  color: colors.BOOK_BLACK,
-  paddingLeft: '12px',
-  paddingRight: '12px',
-  backgroundColor: '#f1f2f6',
-  borderRadius: '8px',
-  height: '48px'
-};
