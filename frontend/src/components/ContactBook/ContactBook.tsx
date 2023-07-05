@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
-import axios from 'axios';
 import { User } from '../../types/User';
 import { Contact } from '../../types/Contact';
-import errorAlert from '../../utils/errorAlert';
-import DeleteIcon from '@mui/icons-material/Delete';
 import ContactCard from './ContactCard';
+import ContactForm from './ContactForm';
+import LoadingButton from '@mui/lab/LoadingButton';
+import errorAlert from '../../utils/errorAlert';
 import * as utils from '../../utils/contactsHandlers';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
-import ContactForm from './ContactForm';
-
-const baseUrl = 'http://localhost:9999';
 
 const ContactBook = ({ user }: { user: User }) => {
   const [loadingSave, setLoadingSave] = useState(false);
@@ -19,14 +15,6 @@ const ContactBook = ({ user }: { user: User }) => {
   const [contactFormOpen, setContactFormOpen] = useState(false);
 
   const [allContacts, setAllContacts] = useState<Contact[]>([]);
-
-  const handleSaveClick = async () => {
-    //setLoadingSave(true);
-    //await utils.createContact(newCon);
-    //setLoadingSave(false);
-    //setRenderingTrigger((prev) => prev + 1);
-    setContactFormOpen(true);
-  };
 
   useEffect(() => {
     if (user.provider) utils.getAllContacts({ user, setAllContacts });
@@ -54,13 +42,14 @@ const ContactBook = ({ user }: { user: User }) => {
           variant="contained"
           color="inherit"
           sx={MUI.LoadButton}
-          onClick={handleSaveClick}
+          onClick={() => setContactFormOpen(true)}
         >
           Add new
         </LoadingButton>
         {allContacts.map((contact) => (
-          <div key={contact!._id}>
+          <div key={contact._id}>
             <ContactCard
+              user={user}
               contact={contact}
               setRenderingTrigger={setRenderingTrigger}
             />

@@ -4,7 +4,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
-const NameModifier = ({
+const EmailModifier = ({
   name,
   setName,
   nameType
@@ -35,7 +35,7 @@ const NameModifier = ({
             justifyContent: 'center'
           }}
         >
-          <FormLabel sx={{ color: 'black' }}>max 20 characters:</FormLabel>
+          {/*<FormLabel sx={{ color: 'black' }}>1 - 20 characters:</FormLabel>*/}
         </Box>
         <div>
           <TextField
@@ -44,7 +44,7 @@ const NameModifier = ({
             required
             value={name}
             inputProps={{
-              maxLength: 20
+              maxLength: 42
             }}
             helperText={error} // error message
             error={!!error} // set to true to change the border/helperText color to red
@@ -56,4 +56,4 @@ const NameModifier = ({
   );
 };
 
-export default NameModifier;
+export default EmailModifier;

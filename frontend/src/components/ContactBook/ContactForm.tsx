@@ -7,23 +7,27 @@ import { User } from '../../types/User';
 import * as utils from '../../utils/contactsHandlers';
 import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
+import { Contact } from '../../types/Contact';
+import EmailModifier from './EmailModifier';
 
 const ContactForm = ({
   user,
   open,
   setOpen,
-  setRenderingTrigger
+  setRenderingTrigger,
+  contact
 }: {
   user: User;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   setRenderingTrigger: React.Dispatch<React.SetStateAction<number>>;
+  contact?: Contact;
 }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [comment, setComment] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [firstName, setFirstName] = useState('' || contact?.firstName);
+  const [lastName, setLastName] = useState('' || contact?.lastName);
+  const [email, setEmail] = useState('' || contact?.email);
+  const [comment, setComment] = useState('' || contact?.comment);
+  const [birthday, setBirthday] = useState('' || contact?.birthday);
 
   const [loadingSave, setLoadingSave] = useState(false);
 
@@ -43,18 +47,23 @@ const ContactForm = ({
     event.preventDefault();
     setLoadingSave(true);
 
-    const newContact = {
+    const newContact: Contact = {
       userID: user.id,
-      firstName: firstName,
-      lastName: lastName,
-      birthday: birthday,
-      email: email,
-      comment: comment
+      firstName: firstName ?? '',
+      lastName: lastName ?? '',
+      birthday: birthday ?? '',
+      email: email ?? '',
+      comment: comment ?? '',
+      _id: contact?._id
     };
 
-    await utils.createContact(newContact);
+    if (contact) {
+      await utils.updateContact(newContact);
+    } else {
+      await utils.createContact(newContact);
+      setDefault();
+    }
     setLoadingSave(false);
-    setDefault();
     setRenderingTrigger((prev) => prev + 1);
   };
 
@@ -73,21 +82,25 @@ const ContactForm = ({
         <div style={{ maxWidth: '300px', textAlign: 'center' }}>
           <h1>Modifying the contact GG</h1>
           <NameModifier
-            name={firstName}
-            setName={setFirstName}
+            name={firstName ?? ''}
+            setName={setFirstName as Dispatch<SetStateAction<string>>}
             nameType="First name"
           />
           <NameModifier
-            name={lastName}
-            setName={setLastName}
+            name={lastName ?? ''}
+            setName={setLastName as Dispatch<SetStateAction<string>>}
             nameType="Last name"
           />
 
-          <NameModifier name={email} setName={setEmail} nameType="Email" />
+          <EmailModifier
+            name={email ?? ''}
+            setName={setEmail as Dispatch<SetStateAction<string>>}
+            nameType="Email"
+          />
 
           <NameModifier
-            name={comment}
-            setName={setComment}
+            name={comment ?? ''}
+            setName={setComment as Dispatch<SetStateAction<string>>}
             nameType="Comment"
           />
 
@@ -101,7 +114,7 @@ const ContactForm = ({
             color="inherit"
             sx={MUI.LoadButton}
           >
-            Save
+            {contact ? 'Modify' : 'Create'}
           </LoadingButton>
         </div>
       </form>

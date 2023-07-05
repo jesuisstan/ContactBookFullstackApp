@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { CardActionArea, CardActions, ThemeProvider } from '@mui/material';
+import ContactForm from './ContactForm';
+import { User } from '../../types/User';
+import { Contact } from '../../types/Contact';
+import { CardActionArea, CardActions } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -9,7 +12,6 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import { Contact } from '../../types/Contact';
 import * as utils from '../../utils/contactsHandlers';
 import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
@@ -30,13 +32,16 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const ContactCard = ({
+  user,
   contact,
   setRenderingTrigger
 }: {
+  user: User;
   contact: Contact;
   setRenderingTrigger: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -48,35 +53,39 @@ const ContactCard = ({
   };
 
   return (
-    <ThemeProvider theme={MUI.theme}>
+    <div>
       <Card sx={MUI.contactCard}>
         <CardActionArea>
-          <CardContent onClick={() => console.log('OPEN')}>
+          <CardContent onClick={() => setOpen(true)}>
             <Typography gutterBottom variant="h5" component="div">
-              {contact!.firstName}
+              {contact.firstName}
               <br />
-              {contact!.lastName}
+              {contact.lastName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {contact!.birthday && (
+              {contact.birthday && (
                 <>
-                  Birthday: {contact!.birthday}
+                  Birthday: {contact.birthday}
                   <br />
                 </>
               )}
-              Email: {contact!.email}
+              Email: {contact.email}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions disableSpacing>
           <IconButton
             aria-label="delete"
-            title="delete contact"
+            title="Delete contact"
             onClick={handleDeleteClick}
           >
             <DeleteIcon sx={{ color: colors.BOOK_ORANGE }} />
           </IconButton>
-          <IconButton aria-label="modify" title="modify contact">
+          <IconButton
+            aria-label="modify"
+            title="Change contact"
+            onClick={() => setOpen(true)}
+          >
             <DriveFileRenameOutlineIcon sx={{ color: colors.BOOK_GREEN }} />
           </IconButton>
           <ExpandMore
@@ -91,12 +100,19 @@ const ContactCard = ({
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography variant="body2">
-              {contact!.comment ? contact!.comment : '*no comment left'}
+              {contact.comment ? contact.comment : '*no comment left'}
             </Typography>
           </CardContent>
         </Collapse>
       </Card>
-    </ThemeProvider>
+      <ContactForm
+        user={user}
+        open={open}
+        setOpen={setOpen}
+        setRenderingTrigger={setRenderingTrigger}
+        contact={contact}
+      />
+    </div>
   );
 };
 

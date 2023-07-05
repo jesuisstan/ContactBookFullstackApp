@@ -24,7 +24,8 @@ module.exports.getAllContacts = async (req, res) => {
 module.exports.saveContact = (req, res) => {
   const { userID, firstName, lastName, email, birthday, comment } = req.body;
 
-  contactModel.create({ userID, firstName, lastName, email, birthday, comment })
+  contactModel
+    .create({ userID, firstName, lastName, email, birthday, comment })
     .then((data) => {
       console.log('Added Successfully...');
       res.send(data);
@@ -37,7 +38,8 @@ module.exports.deleteContact = (req, res) => {
 
   console.log('id ---> ', _id);
 
-  contactModel.findByIdAndDelete(_id)
+  contactModel
+    .findByIdAndDelete(_id)
     .then(() => res.status(201).send('Deleted Successfully...'))
     .catch((err) => {
       console.log(err);
@@ -46,9 +48,18 @@ module.exports.deleteContact = (req, res) => {
 };
 
 module.exports.updateContact = (req, res) => {
-  const { _id, text } = req.body;
+  const { _id, userID, firstName, lastName, email, birthday, comment } =
+    req.body;
 
-  contactModel.findByIdAndUpdate(_id, { text })
+  contactModel
+    .findByIdAndUpdate(_id, {
+      userID,
+      firstName,
+      lastName,
+      email,
+      birthday,
+      comment
+    })
     .then(() => res.set(201).send('Updated Successfully...'))
     .catch((err) => console.log(err));
 };

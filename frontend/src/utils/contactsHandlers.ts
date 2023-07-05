@@ -37,3 +37,11 @@ export const deleteContact = async (ContactToDelete: Contact) => {
     errorAlert('Error deleting contact');
   }
 };
+
+export const updateContact = async (newContact: Contact) => {
+  try {
+    await axios.post<Contact>(`${baseUrl}/update`, newContact);
+  } catch (error) {
+    errorAlert('Error updating contact');
+  }
+};

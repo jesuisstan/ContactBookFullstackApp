@@ -6,4 +6,4 @@ export type Contact = {
   birthday?: string;
   email: string;
   comment?: string;
-} | null
+}
