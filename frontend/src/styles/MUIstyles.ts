@@ -66,6 +66,7 @@ export const burgerItem = {
 };
 
 export const contactCard = {
+  wordBreak: 'break-all',
   maxWidth: 500,
   minWidth: 300,
   color: colors.BOOK_BLACK,

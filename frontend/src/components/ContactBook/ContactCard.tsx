@@ -59,7 +59,7 @@ const ContactCard = ({
           <CardContent onClick={() => setOpen(true)}>
             <Typography
               gutterBottom
-              variant="h5"
+              variant="h6"
               component="div"
               sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
             >
