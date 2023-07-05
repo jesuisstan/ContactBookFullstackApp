@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import LoadingButton from '@mui/lab/LoadingButton';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import * as MUI from '../styles/MUIstyles';
 import styles from '../styles/HomePage.module.css';
 
@@ -33,7 +33,7 @@ const Home = () => {
         </ul>
         <div>
           <LoadingButton
-            endIcon={<KeyboardArrowRightIcon />}
+            endIcon={<ArrowForwardIosIcon />}
             variant="contained"
             color="inherit"
             sx={MUI.LoadButton}

@@ -3,10 +3,9 @@ import { User } from '../../types/User';
 import { Contact } from '../../types/Contact';
 import ContactCard from './ContactCard';
 import ContactForm from './ContactForm';
-import * as utils from '../../utils/contactsHandlers';
-import * as MUI from '../../styles/MUIstyles';
-import * as colors from '../../styles/bookColors';
 import FloatingButton from '../Layout/FloatingButton';
+import PleaseLogin from '../../pages/PleaseLogin';
+import * as utils from '../../utils/contactsHandlers';
 
 const ContactBook = ({ user }: { user: User }) => {
   const [renderingTrigger, setRenderingTrigger] = useState(0);
@@ -18,7 +17,9 @@ const ContactBook = ({ user }: { user: User }) => {
     if (user.provider) utils.getAllContacts({ user, setAllContacts });
   }, [user, renderingTrigger]);
 
-  return (
+  return !user.provider ? (
+    <PleaseLogin />
+  ) : (
     <>
       <ContactForm
         open={contactFormOpen}

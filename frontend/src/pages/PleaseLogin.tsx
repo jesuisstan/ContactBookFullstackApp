@@ -1,16 +1,39 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import LoadingButton from '@mui/lab/LoadingButton';
+import { useEffect, useState } from 'react';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import * as MUI from '../styles/MUIstyles';
+import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
+import BarLoader from 'react-spinners/BarLoader';
 import * as colors from '../styles/bookColors';
 
 const PleaseLogin = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  return (
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  return loading ? (
+    <div
+      style={{
+        alignSelf: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '21px',
+        color: colors.BOOK_GREEN,
+        justifyContent: 'center'
+      }}
+    >
+      <p>loading...</p>
+      <BarLoader
+        color={colors.BOOK_GREEN}
+        loading={loading}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  ) : (
     <div
       style={{
         display: 'flex',
@@ -21,19 +44,10 @@ const PleaseLogin = () => {
     >
       <ErrorOutlineIcon fontSize="large" sx={{ color: colors.BOOK_ORANGE }} />
       <h1>Please login to continue</h1>
-      <LoadingButton
-        loading={loading}
-        startIcon={<ArrowBackIosIcon />}
-        variant="contained"
-        color="inherit"
-        sx={MUI.LoadButton}
-        onClick={() => {
-          setLoading(true);
-          setTimeout(() => navigate(-1), 500);
-        }}
-      >
-        Back
-      </LoadingButton>
+      <CallMissedOutgoingIcon
+        fontSize="large"
+        sx={{ color: colors.BOOK_ORANGE }}
+      />
     </div>
   );
 };
