@@ -66,7 +66,7 @@ export const burgerItem = {
 };
 
 export const contactCard = {
-  maxWidth: 480,
+  maxWidth: 500,
   minWidth: 300,
   color: colors.BOOK_BLACK,
   border: '1px solid',
@@ -77,4 +77,3 @@ export const contactCard = {
     borderColor: colors.BOOK_ORANGE
   }
 };
-
