@@ -32,7 +32,11 @@ const SearchBar = ({
     event.preventDefault();
 
     if (searchValue && !error) {
-      setSearchResult(utils.searchContactsByLastName(contacts, searchValue));
+      let result: Contact[] = utils.searchContactsByLastName(
+        contacts,
+        searchValue
+      );
+      result.length ? setSearchResult(result) : setSearchValue('');
     }
   };
 
@@ -63,7 +67,7 @@ const SearchBar = ({
                 style: {
                   color: colors.BOOK_BLACK,
                   fontFamily: '"GT Walsheim Pro", Arial, sans-serif',
-									minWidth: '250px'
+                  minWidth: '250px'
                 }
               }}
               InputLabelProps={{

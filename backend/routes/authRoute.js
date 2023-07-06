@@ -10,7 +10,6 @@ const FRONTEND_PORT = process.env.FRONTEND_PORT || '3333';
 const SERVER_PORT = process.env.SERVER_PORT || '9999';
 
 const CLIENT_URL = `http://${HOST}:${FRONTEND_PORT}/`;
-//const CLIENT_URL = 'http://localhost:3333/';
 
 let user = {};
 

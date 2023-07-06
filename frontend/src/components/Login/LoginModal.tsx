@@ -21,16 +21,8 @@ const LoginModal = ({
   const [loadGoogle, setLoadGoogle] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-  //const google = () => {
-  //  window.open('http://localhost:9999/auth/google', '_self');
-  //};
-
-  //const github = () => {
-  //  window.open('http://localhost:9999/auth/github', '_self');
-  //};
-
   const google = () => {
-    window.location.href =`http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/google`;
+    window.location.href = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/google`;
   };
 
   const github = () => {

@@ -22,7 +22,6 @@ const Menu = ({ user }: { user: User }) => {
 
   const authenticate = () => {
     if (user.provider) {
-      //window.location.href = 'http://localhost:9999/auth/logout';
       window.location.href = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/logout`;
     } else {
       setLoginOpen(true);
