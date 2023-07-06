@@ -97,6 +97,24 @@ const LoginModal = ({
             >
               Github
             </LoadingButton>
+            <LoadingButton
+              disabled={disabled}
+              variant="contained"
+              color="inherit"
+              sx={{
+                ...MUI.LoadButton,
+                ':hover': {
+                  color: colors.BOOK_WHITE,
+                  bgcolor: '#24292f'
+                }
+              }}
+              onClick={() => {
+                setDisabled(true);
+                //github();
+              }}
+            >
+              Fake login (use it)
+            </LoadingButton>
           </div>
         </Stack>
       </ModalDialog>
