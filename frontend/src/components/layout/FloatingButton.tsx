@@ -8,7 +8,7 @@ const FloatingButton = ({ onClick }: { onClick: () => void }) => {
     <Box
       sx={{
         position: 'fixed',
-        bottom: '60px',
+        bottom: '50px',
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 1,
@@ -20,7 +20,7 @@ const FloatingButton = ({ onClick }: { onClick: () => void }) => {
     >
       <Fab
         sx={{
-          bgcolor: colors.BOOK_ORANGE,
+          bgcolor: colors.BOOK_ORANGE_TRANS,
           '&:hover': {
             bgcolor: colors.BOOK_BLACK
           }

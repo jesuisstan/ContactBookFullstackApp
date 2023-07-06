@@ -41,7 +41,8 @@ const ContactBook = ({ user }: { user: User }) => {
         }}
       >
         <FloatingButton onClick={() => setContactFormOpen(true)} />
-        {allContacts.map((contact) => (
+        {!allContacts.length && <h1>List of contacts is empty</h1>}
+        {(searchResult.length ? searchResult : allContacts).map((contact) => (
           <div key={contact._id} style={{ flex: '0 0 calc(20% - 10.5px)' }}>
             <ContactCard
               user={user}

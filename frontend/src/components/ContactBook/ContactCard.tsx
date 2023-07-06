@@ -79,7 +79,7 @@ const ContactCard = ({
           </IconButton>
           <IconButton
             aria-label="modify"
-            title="Change contact"
+            title="Edit contact"
             onClick={() => setOpen(true)}
           >
             <DriveFileRenameOutlineIcon sx={{ color: colors.BOOK_GREEN }} />
@@ -89,6 +89,7 @@ const ContactCard = ({
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
+            title="Show content"
           >
             <ExpandMoreIcon sx={{ color: colors.BOOK_GREEN }} />
           </ExpandMore>

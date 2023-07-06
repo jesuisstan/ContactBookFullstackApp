@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/joy/FormControl';
@@ -36,52 +36,60 @@ const SearchBar = ({
     }
   };
 
+  useEffect(() => {
+    if (searchValue === '') {
+      setSearchResult([]);
+    }
+  }, [searchValue]);
+
   return (
-    <div>
-      <div style={{ paddingBottom: '50px' }}>
-        <form onSubmit={handleSubmit}>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FormControl>
-              <TextField
-                id="search-bar"
-                required
-                label="Find by Lastname"
-                variant="standard"
-                placeholder="Search..."
-                size="small"
-                value={searchValue}
-                inputProps={{
-                  'aria-label': 'search',
-                  minLength: 1,
-                  maxLength: 20,
-                  style: {
-                    color: colors.BOOK_BLACK
-                  }
-                }}
-                InputLabelProps={{
-                  style: {
-                    color: colors.BOOK_BLACK
-                  }
-                }}
-                error={!!error}
-                helperText={error}
-                onChange={handleTextInput}
-              />
-            </FormControl>
-            <IconButton type="submit" aria-label="search">
-              <SearchIcon
-                fontSize="medium"
-                sx={{
-                  color: colors.BOOK_ORANGE,
-                  '&:hover': {
-                    color: colors.BOOK_BLACK
-                  }
-                }}
-              />
-            </IconButton>
-          </div>
-        </form>
-      </div>
+    <div style={{ paddingBottom: '50px' }}>
+      <form onSubmit={handleSubmit}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <FormControl>
+            <TextField
+              sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
+              id="search-bar"
+              required
+              label="Find by Lastname"
+              variant="standard"
+              placeholder="Search..."
+              size="small"
+              value={searchValue}
+              inputProps={{
+                'aria-label': 'search',
+                minLength: 1,
+                maxLength: 20,
+                style: {
+                  color: colors.BOOK_BLACK,
+                  fontFamily: '"GT Walsheim Pro", Arial, sans-serif',
+									minWidth: '250px'
+                }
+              }}
+              InputLabelProps={{
+                style: {
+                  color: colors.BOOK_BLACK,
+                  fontFamily: '"GT Walsheim Pro", Arial, sans-serif'
+                }
+              }}
+              error={!!error}
+              helperText={error}
+              onChange={handleTextInput}
+            />
+          </FormControl>
+          <IconButton type="submit" aria-label="search">
+            <SearchIcon
+              fontSize="medium"
+              sx={{
+                color: colors.BOOK_ORANGE,
+                '&:hover': {
+                  color: colors.BOOK_BLACK
+                }
+              }}
+            />
+          </IconButton>
+        </div>
+      </form>
     </div>
   );
 };

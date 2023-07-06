@@ -13,6 +13,7 @@ import * as utils from '../../utils/contactsHandlers';
 import * as colors from '../../styles/bookColors';
 import * as MUI from '../../styles/MUIstyles';
 import styles from '../../styles/ContactForm.module.css';
+import saveAlert from '../../utils/saveAlert';
 
 const ContactForm = ({
   user,
@@ -64,6 +65,7 @@ const ContactForm = ({
     }
     setLoadingSave(false);
     setRenderingTrigger((prev) => prev + 1);
+    saveAlert();
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
