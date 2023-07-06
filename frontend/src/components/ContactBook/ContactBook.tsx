@@ -3,10 +3,10 @@ import { User } from '../../types/User';
 import { Contact } from '../../types/Contact';
 import ContactCard from './ContactCard';
 import ContactForm from './ContactForm';
-import FloatingButton from '../Layout/FloatingButton';
 import PleaseLogin from '../../pages/PleaseLogin';
 import * as utils from '../../utils/contactsHandlers';
 import SearchBar from './SearchBar';
+import FloatingButton from '../Layout/FloatingButton';
 
 const ContactBook = ({ user }: { user: User }) => {
   const [renderingTrigger, setRenderingTrigger] = useState(0);

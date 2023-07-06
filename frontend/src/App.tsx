@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainLayout from './components/Layout/MainLayout';
 import Home from './pages/Home.page';
 import ContactBook from './components/ContactBook/ContactBook';
 import NotFound from './pages/NotFound.page';
 import { User } from './types/User';
 import * as utils from './utils/contactsHandlers';
 import './styles/index.css';
+import MainLayout from './components/Layout/MainLayout';
 
 const App = () => {
   const [user, setUser] = useState<User>({
