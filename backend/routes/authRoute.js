@@ -51,7 +51,7 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: 'http://localhost:9999/auth/github/callback/'
+      callbackURL: 'http://${HOST}:${SERVER_PORT}/auth/github/callback/'
     },
     function (accessToken, refreshToken, profile, cb) {
       user = {
