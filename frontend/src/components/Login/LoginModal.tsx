@@ -10,7 +10,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
 
-const EditNickname = ({
+const LoginModal = ({
   open,
   setOpen
 }: {
@@ -21,12 +21,20 @@ const EditNickname = ({
   const [loadGoogle, setLoadGoogle] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
+  //const google = () => {
+  //  window.open('http://localhost:9999/auth/google', '_self');
+  //};
+
+  //const github = () => {
+  //  window.open('http://localhost:9999/auth/github', '_self');
+  //};
+
   const google = () => {
-    window.open('http://localhost:9999/auth/google', '_self');
+    window.location.href =`${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/google`;
   };
 
   const github = () => {
-    window.open('http://localhost:9999/auth/github', '_self');
+    window.location.href = `${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/github`;
   };
 
   return (
@@ -104,4 +112,4 @@ const EditNickname = ({
   );
 };
 
-export default EditNickname;
+export default LoginModal;
