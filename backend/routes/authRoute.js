@@ -1,10 +1,15 @@
+require('dotenv').config();
 const router = require('express').Router();
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
 const passport = require('passport');
 const session = require('express-session');
 
-const CLIENT_URL = 'http://localhost:3333/';
+const HOST = process.env.HOST || 'localhost';
+const FRONTEND_PORT = process.env.FRONTEND_PORT || '3333';
+const CLIENT_URL = `http://${HOST}:${FRONTEND_PORT}/`;
+//const CLIENT_URL = 'http://localhost:3333/';
+
 let user = {};
 
 const GOOGLE_CLIENT_ID =
@@ -21,12 +26,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
-
-//app.use(session({
-//  secret: 'your-secret-key',
-//  resave: false,
-//  saveUninitialized: false
-//}));
 
 passport.use(
   new GoogleStrategy(
@@ -90,7 +89,7 @@ router.get('/auth/login/failed', (req, res) => {
 
 router.get('/auth/getuser', (req, res) => {
   console.log('getting user data...');
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3333');
+  res.header('Access-Control-Allow-Origin', CLIENT_URL);
   res.send(user);
 });
 

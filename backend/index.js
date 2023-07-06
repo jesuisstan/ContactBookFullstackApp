@@ -12,6 +12,9 @@ const MONGODB_URL =
   'mongodb+srv://jesuisstan:qweasZ87@cluster0.rbmyens.mongodb.net/ContactBookApp?retryWrites=true&w=majority';
 const PORT = 9999;
 
+app.use(express.json());
+app.use(cors());
+
 mongoose
   .connect(MONGODB_URL)
   .then(() => console.log('Connected to Database'))
@@ -28,11 +31,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.json());
-app.use(cors());
+
 //app.use(
 //  cors({
-//    origin: 'http://localhost:3333',
+//    origin: 'http://localhost:3333/',
 //    methods: 'GET,POST,PUT,DELETE',
 //    credentials: true
 //  })

@@ -30,11 +30,11 @@ const LoginModal = ({
   //};
 
   const google = () => {
-    window.location.href =`${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/google`;
+    window.location.href =`http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/google`;
   };
 
   const github = () => {
-    window.location.href = `${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/github`;
+    window.location.href = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/github`;
   };
 
   return (
