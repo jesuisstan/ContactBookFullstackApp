@@ -14,12 +14,11 @@ const CLIENT_URL = `http://${HOST}:${FRONTEND_PORT}/`;
 
 let user = {};
 
-const GOOGLE_CLIENT_ID =
-  '629983254497-5jcucfp16tu0h1mf4u1aujru405r0aar.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
-const GITHUB_CLIENT_ID = 'Iv1.09419895f418ed82';
-const GITHUB_CLIENT_SECRET = '8b6efbb51a59e210de26049f7ef6befe6e764cb5';
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 passport.serializeUser((user, done) => {
   done(null, user);

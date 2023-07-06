@@ -3,7 +3,7 @@ import errorAlert from './errorAlert';
 import { Contact } from '../types/Contact';
 import { User } from '../types/User';
 
-const baseUrl = 'http://localhost:9999';
+const baseUrl = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
 
 export const getUserData = (
   setUser: React.Dispatch<React.SetStateAction<User>>
