@@ -1,3 +1,4 @@
+require('dotenv').config();
 const cookieSession = require('cookie-session');
 const express = require('express');
 const cors = require('cors');
@@ -10,7 +11,7 @@ const app = express();
 
 const MONGODB_URL =
   'mongodb+srv://jesuisstan:qweasZ87@cluster0.rbmyens.mongodb.net/ContactBookApp?retryWrites=true&w=majority';
-const PORT = 9999;
+const PORT = process.env.SERVER_PORT || '9999';
 
 app.use(express.json());
 app.use(cors());
