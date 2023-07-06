@@ -18,8 +18,8 @@ const GOOGLE_CLIENT_ID =
   '629983254497-5jcucfp16tu0h1mf4u1aujru405r0aar.apps.googleusercontent.com';
 const GOOGLE_CLIENT_SECRET = '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';
 
-const GITHUB_CLIENT_ID = 'Iv1.7a769ec0b6e24422';
-const GITHUB_CLIENT_SECRET = '73bea910a8d43587b5d1bf229308c5704c0bd8ea';
+const GITHUB_CLIENT_ID = 'Iv1.09419895f418ed82';
+const GITHUB_CLIENT_SECRET = '8b6efbb51a59e210de26049f7ef6befe6e764cb5';
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -53,7 +53,7 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: 'http://${HOST}:${SERVER_PORT}/auth/github/callback/'
+      callbackURL: `http://${HOST}:${SERVER_PORT}/auth/github/callback/`
     },
     function (accessToken, refreshToken, profile, cb) {
       user = {
