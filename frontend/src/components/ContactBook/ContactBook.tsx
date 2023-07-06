@@ -6,12 +6,14 @@ import ContactForm from './ContactForm';
 import FloatingButton from '../Layout/FloatingButton';
 import PleaseLogin from '../../pages/PleaseLogin';
 import * as utils from '../../utils/contactsHandlers';
+import SearchBar from './SearchBar';
 
 const ContactBook = ({ user }: { user: User }) => {
   const [renderingTrigger, setRenderingTrigger] = useState(0);
   const [contactFormOpen, setContactFormOpen] = useState(false);
 
   const [allContacts, setAllContacts] = useState<Contact[]>([]);
+  const [searchResult, setSearchResult] = useState<Contact[]>([]);
 
   useEffect(() => {
     if (user.provider) utils.getAllContacts({ user, setAllContacts });
@@ -27,6 +29,8 @@ const ContactBook = ({ user }: { user: User }) => {
         user={user}
         setRenderingTrigger={setRenderingTrigger}
       />
+
+      <SearchBar contacts={allContacts} setSearchResult={setSearchResult} />
 
       <div
         style={{

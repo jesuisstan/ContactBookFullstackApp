@@ -65,7 +65,12 @@ export const searchContactsByLastName = (
 ): Contact[] => {
   const lowerCaseLastName = lastName.toLowerCase();
 
-  return contacts.filter(
+  let result: Contact[] = contacts.filter(
     (contact) => contact.lastName.toLocaleLowerCase() === lowerCaseLastName
   );
+
+  if (!result.length) {
+    errorAlert('No matching contacts');
+  }
+  return result;
 };
