@@ -10,16 +10,16 @@ import MainLayout from './components/Layout/MainLayout';
 
 const App = () => {
   const [user, setUser] = useState<User>({
-    id: '1',
-    username: 'Stan',
+    id: '',
+    username: '',
     avatar: '',
-    provider: 'fake'
+    provider: ''
   });
 
-  //useEffect(() => {
-  //  utils.getUserData(setUser);
-  //}, []);
-
+  useEffect(() => {
+    utils.getUserData(setUser);
+  }, []);
+console.log(user)
   return (
     <BrowserRouter>
       <div className="App">

@@ -20,7 +20,7 @@ const ContactForm = ({
   open,
   setOpen,
   setRenderingTrigger,
-  contact
+  contact,
 }: {
   user: User;
   open: boolean;

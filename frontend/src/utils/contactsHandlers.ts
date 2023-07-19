@@ -61,7 +61,7 @@ export const updateContact = async (newContact: Contact) => {
 
 export const searchContactsByLastName = (
   contacts: Contact[],
-  lastName: string
+  lastName: string,
 ): Contact[] => {
   const lowerCaseLastName = lastName.toLowerCase();
 

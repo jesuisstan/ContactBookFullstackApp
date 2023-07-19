@@ -34,7 +34,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 const ContactCard = ({
   user,
   contact,
-  setRenderingTrigger
+  setRenderingTrigger,
 }: {
   user: User;
   contact: Contact;
@@ -63,9 +63,9 @@ const ContactCard = ({
               component="div"
               sx={{ fontFamily: '"GT Walsheim Pro", Arial, sans-serif' }}
             >
-              {contact.firstName}
-              <br />
               {contact.lastName}
+              <br />
+              {contact.firstName}
             </Typography>
           </CardContent>
         </CardActionArea>
