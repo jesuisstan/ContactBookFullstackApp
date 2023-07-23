@@ -5,17 +5,36 @@ import { User } from '../types/User';
 
 const baseUrl = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
 
-export const getUserData = (
-  setUser: React.Dispatch<React.SetStateAction<User>>
-) => {
-  axios.get(`${baseUrl}/auth/getuser`).then(
-    (response) => {
-      setUser(response.data);
-    },
-    (error) => {
-      errorAlert('Authentication failed! Try again.');
+function getCookieValue(name: any) {
+  const cookies = document.cookie.split('; ');
+
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split('=');
+    
+    if (cookieName === name) {
+      return cookieValue;
     }
-  );
+  }
+  return null;
+}
+
+export const getUserData = async (setUser: React.Dispatch<React.SetStateAction<User>>) => {
+  try {
+    // Get the authentication token from the cookie
+    const token = getCookieValue('access_token');
+
+    // Make the authenticated API request with the token in the headers
+    const response = await axios.get(`${baseUrl}/api/users/getuser`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // Update the user state with the received data
+    setUser(response.data);
+  } catch (error) {
+    errorAlert('Authentication failed! Try again.');
+  }
 };
 
 export const getAllContacts = async ({
@@ -26,7 +45,7 @@ export const getAllContacts = async ({
   setAllContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
 }) => {
   try {
-    const response = await axios.get<Contact[]>(`${baseUrl}/getall/${user.id}`);
+    const response = await axios.get<Contact[]>(`${baseUrl}/getall/${user._id}`);
     setAllContacts(response.data);
   } catch (error) {
     errorAlert('Error retrieving contacts');

@@ -1,5 +1,7 @@
 import express from 'express';
-import { update, deleteUser, getUser } from '../controllers/user.js';
+import { update, deleteUser, getUserData } from '../controllers/user.js';
+import { authenticateMiddleware } from './authRoute.js';
+
 import { verifyToken } from '../verifyToken.js';
 
 const router = express.Router();
@@ -11,6 +13,7 @@ router.put('/:id', verifyToken, update);
 router.delete('/:id', verifyToken, deleteUser);
 
 //get a user
-router.get('/find/:id', getUser);
+//router.get('/find/:id', getUser);
+router.get('/getuser', authenticateMiddleware, getUserData);
 
 export default router;

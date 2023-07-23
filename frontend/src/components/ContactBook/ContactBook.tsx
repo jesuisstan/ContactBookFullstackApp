@@ -3,7 +3,7 @@ import { User } from '../../types/User';
 import { Contact } from '../../types/Contact';
 import ContactCard from './ContactCard';
 import ContactForm from './ContactForm';
-import PleaseLogin from '../../pages/PleaseLogin';
+import PleaseLogin from '../Login/PleaseLogin';
 import SearchBar from './SearchBar';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FloatingButton from '../Layout/FloatingButton';
@@ -11,7 +11,13 @@ import Checkbox from '@mui/material/Checkbox';
 import * as utils from '../../utils/contactsHandlers';
 import * as colors from '../../styles/bookColors';
 
-const ContactBook = ({ user }: { user: User }) => {
+const ContactBook = ({
+  user,
+  setUser
+}: {
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
+}) => {
   const [renderingTrigger, setRenderingTrigger] = useState(0);
   const [contactFormOpen, setContactFormOpen] = useState(false);
   const [allContacts, setAllContacts] = useState<Contact[]>([]);
@@ -43,11 +49,11 @@ const ContactBook = ({ user }: { user: User }) => {
   }, [allContacts]);
 
   useEffect(() => {
-    if (user.provider) utils.getAllContacts({ user, setAllContacts });
+    if (user._id) utils.getAllContacts({ user, setAllContacts });
   }, [user, renderingTrigger]);
 
-  return !user.provider ? (
-    <PleaseLogin />
+  return !user._id ? (
+    <PleaseLogin setUser={setUser} />
   ) : (
     <>
       <ContactForm

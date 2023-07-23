@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { User } from '../../types/User';
 import Avatar from '@mui/material/Avatar';
 import { useState } from 'react';
@@ -6,7 +6,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuDrawer from './MenuDrawer';
-import LoginModal from '../Login/LoginModal';
 import styles from '../../styles/Menu.module.css';
 import LoadingButton from '@mui/lab/LoadingButton';
 import LoginIcon from '@mui/icons-material/Login';
@@ -15,22 +14,21 @@ import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
 
 const Menu = ({ user }: { user: User }) => {
+  const navigate = useNavigate()
   const isSmallScreen = useMediaQuery('(max-width:600px)');
   const isUltraSmallScreen = useMediaQuery('(max-width:350px)');
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
 
   const authenticate = () => {
-    if (user.provider) {
+    if (user._id) {
       window.location.href = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/logout`;
     } else {
-      setLoginOpen(true);
+      navigate('/login');
     }
   };
 
   return (
     <div>
-      <LoginModal open={loginOpen} setOpen={setLoginOpen} />
       <nav className={styles.navbar}>
         {isSmallScreen ? (
           <IconButton
@@ -48,12 +46,12 @@ const Menu = ({ user }: { user: User }) => {
         )}
         <div className={styles.right}>
           <div className={styles.userData}>
-            {!isSmallScreen && user.username}
+            {!isSmallScreen && user.nickname}
             {!isUltraSmallScreen && <Avatar alt="" src={user.avatar} />}
           </div>
           <div>
             <LoadingButton
-              startIcon={user.provider ? <LogoutIcon /> : <LoginIcon />}
+              startIcon={user._id ? <LogoutIcon /> : <LoginIcon />}
               variant="contained"
               color="inherit"
               sx={MUI.LoadButton}
@@ -61,7 +59,7 @@ const Menu = ({ user }: { user: User }) => {
                 authenticate();
               }}
             >
-              {user.provider ? 'Logout' : 'Login'}
+              {user._id ? 'Logout' : 'Login'}
             </LoadingButton>
           </div>
         </div>

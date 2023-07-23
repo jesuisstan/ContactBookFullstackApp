@@ -20,7 +20,7 @@ const ContactForm = ({
   open,
   setOpen,
   setRenderingTrigger,
-  contact,
+  contact
 }: {
   user: User;
   open: boolean;
@@ -47,7 +47,7 @@ const ContactForm = ({
 
     const newContact: Contact = {
       ...values,
-      userID: user.id,
+      userID: user._id,
       _id: contact?._id
     };
 

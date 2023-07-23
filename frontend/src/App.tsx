@@ -7,26 +7,40 @@ import { User } from './types/User';
 import * as utils from './utils/contactsHandlers';
 import './styles/index.css';
 import MainLayout from './components/Layout/MainLayout';
+import PleaseLogin from './components/Login/PleaseLogin';
 
 const App = () => {
+  //const [user, setUser] = useState<User>({
+  //  id: '1',
+  //  username: 'Stan',
+  //  avatar: '',
+  //  provider: 'fake'
+  //});
+
   const [user, setUser] = useState<User>({
-    id: '1',
-    username: 'Stan',
+    _id: '',
+    nickname: '',
+    email: '',
     avatar: '',
-    provider: 'fake'
+    provider: ''
   });
 
-  //useEffect(() => {
-  //  utils.getUserData(setUser);
-  //}, []);
-console.log(user)
+  useEffect(() => {
+    utils.getUserData(setUser);
+  }, []);
+
+  console.log(user);
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path="/" element={<MainLayout user={user} />}>
             <Route index={true} element={<Home />} />
-            <Route path="contactbook" element={<ContactBook user={user} />} />
+            <Route
+              path="contactbook"
+              element={<ContactBook user={user} setUser={setUser} />}
+            />
+            <Route path="login" element={<PleaseLogin setUser={setUser} />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

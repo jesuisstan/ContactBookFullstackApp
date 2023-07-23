@@ -33,9 +33,17 @@ export const deleteUser = async (req, res, next) => {
   }
 };
 
-export const getUser = async (req, res, next) => {
+export const getUserData = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
+    const userId = req.userId;
+
+    // Fetch the user data from the database using the user ID
+    const user = await User.findById(userId).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found!' });
+    }
+
     res.status(200).json(user);
   } catch (err) {
     next(err);
