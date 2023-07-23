@@ -5,6 +5,7 @@ import userRoutes from './routes/usersRoute.js';
 import authRoutes from './routes/authRoute.js';
 import contactsRoutes from './routes/contactsRoute.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const app = express();
 
@@ -24,11 +25,17 @@ const connect = () => {
     });
 };
 
+app.use(cors({
+  origin: 'http://localhost:3333',
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true
+}));
+
 //middlewares
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use(contactsRoutes);
+app.use("/", contactsRoutes);
 
 //error handler
 app.use((err, req, res, next) => {
@@ -40,6 +47,7 @@ app.use((err, req, res, next) => {
     message,
   });
 });
+
 
 app.listen(PORT, () => {
   console.log('Server is running on port ' + PORT);

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const contactSchema = new mongoose.Schema({
   userID: {
@@ -27,4 +27,5 @@ const contactSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Contact', contactSchema);
+export default mongoose.model("Contact", contactSchema);
+

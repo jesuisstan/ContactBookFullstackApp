@@ -1,4 +1,4 @@
-//const contactModel = require('../models/contactModel');
+import contactModel from '../models/contactModel.js';
 
 //module.exports.getAllContacts = async (req, res) => {
 //  const contacts = await contactModel.find();
