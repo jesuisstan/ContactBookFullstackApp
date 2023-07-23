@@ -31,10 +31,23 @@ export const signin = async (req, res, next) => {
 
     res
       .cookie("access_token", token, {
-        httpOnly: false,
+        httpOnly: true,
       })
       .status(200)
       .json(others);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const logout = (req, res, next) => {
+  try {
+    // Clear the "access_token" cookie by setting it to an empty string and setting its expiration in the past.
+    res.clearCookie("access_token", {
+      httpOnly: true,
+      expires: new Date(0), // This sets the expiration to a date in the past, effectively deleting the cookie.
+    });
+    res.status(200).send("Logged out successfully!");
   } catch (err) {
     next(err);
   }

@@ -20,17 +20,9 @@ function getCookieValue(name: any) {
 
 export const getUserData = async (setUser: React.Dispatch<React.SetStateAction<User>>) => {
   try {
-    // Get the authentication token from the cookie
-    const token = getCookieValue('access_token');
-
-    // Make the authenticated API request with the token in the headers
     const response = await axios.get(`${baseUrl}/api/users/getuser`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      withCredentials: true,
     });
-
-    // Update the user state with the received data
     setUser(response.data);
   } catch (error) {
     errorAlert('Authentication failed! Try again.');

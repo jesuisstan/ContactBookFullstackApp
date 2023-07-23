@@ -34,7 +34,10 @@ const App = () => {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<MainLayout user={user} />}>
+          <Route
+            path="/"
+            element={<MainLayout user={user} setUser={setUser} />}
+          >
             <Route index={true} element={<Home />} />
             <Route
               path="contactbook"

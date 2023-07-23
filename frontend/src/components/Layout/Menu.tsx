@@ -12,16 +12,38 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
+import axios from 'axios';
 
-const Menu = ({ user }: { user: User }) => {
-  const navigate = useNavigate()
+const baseUrl = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
+
+const Menu = ({
+  user,
+  setUser
+}: {
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
+}) => {
+  const navigate = useNavigate();
   const isSmallScreen = useMediaQuery('(max-width:600px)');
   const isUltraSmallScreen = useMediaQuery('(max-width:350px)');
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
 
-  const authenticate = () => {
+  //const authenticate = () => {
+  //  if (user._id) {
+  //    window.location.href = `${baseUrl}/api/auth/logout`;
+  //    navigate('/')
+  //  } else {
+  //    navigate('/login');
+  //  }
+  //};
+
+  const authenticate = async () => {
     if (user._id) {
-      window.location.href = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/auth/logout`;
+      const response = await axios.get(`${baseUrl}/api/auth/logout`, {
+        withCredentials: true
+      });
+      setUser({ _id: '', nickname: '', email: '', avatar: '', provider: '' });
+      navigate('/');
     } else {
       navigate('/login');
     }

@@ -3,10 +3,10 @@ import Menu from './Menu';
 import Footer from './Footer';
 import { User } from '../../types/User';
 
-const MainLayout = ({ user }: { user: User }) => {
+const MainLayout = ({ user, setUser }: { user: User; setUser: React.Dispatch<React.SetStateAction<User>>; }) => {
   return (
     <div>
-      <Menu user={user} />
+      <Menu user={user} setUser={setUser}/>
       <div style={{ marginTop: '92px', marginBottom: '90px' }}>
         <Outlet />
       </div>

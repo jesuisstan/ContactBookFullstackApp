@@ -10,8 +10,6 @@ import errorAlert from '../../utils/errorAlert';
 import axios from 'axios';
 import LoadingButton from '@mui/lab/LoadingButton';
 import * as MUI from '../../styles/MUIstyles';
-import GoogleIcon from '@mui/icons-material/Google';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { User } from '../../types/User';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,10 +23,7 @@ const PleaseLogin = ({
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [signUpOpen, setSignUpOpen] = useState(false);
-
-  const [loadGit, setLoadGit] = useState(false);
-  const [loadGoogle, setLoadGoogle] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
   const [values, setValues] = useState({
     email: '',
     password: ''
@@ -42,7 +37,7 @@ const PleaseLogin = ({
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setLoadingLogin(true);
     try {
       const response = await axios.post(`${baseUrl}/api/auth/signin`, values, {
         withCredentials: true
@@ -50,13 +45,15 @@ const PleaseLogin = ({
       setUser(response.data);
       navigate('/contactbook');
     } catch (error) {
+      setLoadingLogin(false);
       errorAlert(`Error logging in: ${error}`);
     }
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
+    const trimmedValue = value.replace(/\s/g, '');
+    setValues({ ...values, [name]: trimmedValue });
   };
 
   return loading ? (
@@ -85,6 +82,7 @@ const PleaseLogin = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        textAlign: 'left',
         gap: '21px'
       }}
     >
@@ -105,12 +103,12 @@ const PleaseLogin = ({
           <form onSubmit={handleLogin} className={styles.formList}>
             <FormInput
               {...{
-                id: 2,
+                id: 1,
                 name: 'email',
                 type: 'email',
                 placeholder: 'Email',
                 errorMessage: 'Should be a valid email with max length 42',
-                label: '* Email',
+                label: 'Email',
                 pattern: '^(?=.{1,42}$)\\S+@\\S+\\.\\S+$',
                 required: true
               }}
@@ -119,12 +117,12 @@ const PleaseLogin = ({
             />
             <FormInput
               {...{
-                id: 3,
+                id: 2,
                 name: 'password',
                 type: 'password',
                 placeholder: 'Password',
                 errorMessage:
-                  'Password should be 3-20 characters and include at least 1 letter, 1 number and 1 special character!',
+                  '3-20 chars, 1 letter, 1 number, 1 special symbol',
                 label: 'Password',
                 pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{3,20}$`,
                 required: true
@@ -134,8 +132,7 @@ const PleaseLogin = ({
             />
             <LoadingButton
               type="submit"
-              //loading={loadingSave}
-              //startIcon={contact ? <SaveAsIcon /> : <SaveIcon />}
+              loading={loadingLogin}
               variant="contained"
               color="inherit"
               sx={MUI.LoadButton}
@@ -144,8 +141,6 @@ const PleaseLogin = ({
             </LoadingButton>
             <LoadingButton
               type="submit"
-              //loading={loadingSave}
-              //startIcon={contact ? <SaveAsIcon /> : <SaveIcon />}
               variant="contained"
               color="inherit"
               sx={MUI.LoadButton}
@@ -154,49 +149,6 @@ const PleaseLogin = ({
               Sign Up
             </LoadingButton>
           </form>
-
-          <LoadingButton
-            disabled={disabled}
-            loading={loadGoogle}
-            startIcon={<GoogleIcon />}
-            variant="contained"
-            color="inherit"
-            sx={{
-              ...MUI.LoadButton,
-              ':hover': {
-                color: colors.BOOK_WHITE,
-                bgcolor: '#df4930'
-              }
-            }}
-            onClick={() => {
-              setLoadGoogle(true);
-              setDisabled(true);
-              //google();
-            }}
-          >
-            Google
-          </LoadingButton>
-          <LoadingButton
-            disabled={disabled}
-            loading={loadGit}
-            startIcon={<GitHubIcon />}
-            variant="contained"
-            color="inherit"
-            sx={{
-              ...MUI.LoadButton,
-              ':hover': {
-                color: colors.BOOK_WHITE,
-                bgcolor: '#24292f'
-              }
-            }}
-            onClick={() => {
-              setLoadGit(true);
-              setDisabled(true);
-              //github();
-            }}
-          >
-            Github
-          </LoadingButton>
         </div>
       </Stack>
     </div>
