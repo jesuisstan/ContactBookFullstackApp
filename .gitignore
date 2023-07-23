@@ -33,6 +33,8 @@ package-lock.json
 .env.production.local
 .env
 /backend/.env
+./backend/.env
+
 
 npm-debug.log*
 yarn-debug.log*
