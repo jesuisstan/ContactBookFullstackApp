@@ -1,48 +1,47 @@
-require('dotenv').config();
-const cookieSession = require('cookie-session');
-const express = require('express');
-const cors = require('cors');
-const passport = require('passport');
-const authRoute = require('./routes/authRoute');
-const ContactRoutes = require('./routes/contactRoute');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRoutes from './routes/usersRoute.js';
+import authRoutes from './routes/authRoute.js';
+import contactsRoutes from './routes/contactsRoute.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
-const MONGODB_URL =
-  'mongodb+srv://jesuisstan:qweasZ87@cluster0.rbmyens.mongodb.net/ContactBookApp?retryWrites=true&w=majority';
-const PORT = process.env.SERVER_PORT || '9999';
+dotenv.config();
+const PORT = process.env.SERVER_PORT;
 
 app.use(express.json());
-app.use(cors());
 
-mongoose
-  .connect(MONGODB_URL)
-  .then(() => console.log('Connected to Database'))
-  .catch((err) => console.log(err));
+const connect = () => {
+  mongoose
+    .connect(process.env.MONGO)
+    .then(() => {
+      console.log('Connected to DB');
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 
-app.use(
-  cookieSession({
-    name: 'session',
-    keys: ['ContactBookFullstackApp'],
-    maxAge: 24 * 60 * 60 * 100
-  })
-);
+//middlewares
+app.use(cookieParser());
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use(contactsRoutes);
 
-app.use(passport.initialize());
-app.use(passport.session());
+//error handler
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || "Something went wrong!";
+  return res.status(status).json({
+    success: false,
+    status,
+    message,
+  });
+});
 
-
-//app.use(
-//  cors({
-//    origin: 'http://localhost:3333/',
-//    methods: 'GET,POST,PUT,DELETE',
-//    credentials: true
-//  })
-//);
-
-// Routes
-app.use(ContactRoutes);
-app.use('/', authRoute);
-
-app.listen(PORT, () => console.log('Server is running on port ' + PORT));
+app.listen(PORT, () => {
+  console.log('Server is running on port ' + PORT);
+  connect();
+});

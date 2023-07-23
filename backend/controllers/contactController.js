@@ -1,11 +1,11 @@
-const contactModel = require('../models/contactModel');
+//const contactModel = require('../models/contactModel');
 
 //module.exports.getAllContacts = async (req, res) => {
 //  const contacts = await contactModel.find();
 //  res.send(contacts);
 //};
 
-module.exports.getAllContacts = async (req, res) => {
+export const getAllContacts = async (req, res) => {
   const { userId } = req.params; // Accessing the userId from req.params
 
   if (userId) {
@@ -21,7 +21,7 @@ module.exports.getAllContacts = async (req, res) => {
   }
 };
 
-module.exports.saveContact = (req, res) => {
+export const saveContact = (req, res) => {
   const { userID, firstName, lastName, email, birthday, comment } = req.body;
 
   contactModel
@@ -33,7 +33,7 @@ module.exports.saveContact = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-module.exports.deleteContact = (req, res) => {
+export const deleteContact = (req, res) => {
   const { _id } = req.body;
 
   console.log('id ---> ', _id);
@@ -47,7 +47,7 @@ module.exports.deleteContact = (req, res) => {
     });
 };
 
-module.exports.updateContact = (req, res) => {
+export const updateContact = (req, res) => {
   const { _id, userID, firstName, lastName, email, birthday, comment } =
     req.body;
 
