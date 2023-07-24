@@ -27,16 +27,16 @@ const connect = () => {
     });
 };
 
-app.use(
-  cors({
-    origin: `${process.env.HOST}:${process.env.FRONTEND_PORT}`,
-    methods: 'GET,POST,PUT,DELETE',
-    credentials: true
-  })
-);
+//app.use(
+//  cors({
+//    origin: `${process.env.HOST}:${process.env.FRONTEND_PORT}`,
+//    methods: 'GET,POST,PUT,DELETE',
+//    credentials: true
+//  })
+//);
 
-//// 1. Set up the proxy trust
-//app.set('trust proxy', 1);
+// 1. Set up the proxy trust
+app.set('trust proxy', 1);
 
 //// 2. Set the global prefix
 //app.use('/api', (req, res, next) => {
@@ -45,16 +45,16 @@ app.use(
 //  next();
 //});
 
-//// 3. Use the proxy setting in CORS
-//app.use(
-//  cors({
-//    origin: '*',
-//    methods: 'GET,POST,PUT,DELETE',
-//    credentials: true,
-//    // Add the following line to enable the proxy setting for CORS
-//    proxy: true,
-//  })
-//);
+// 3. Use the proxy setting in CORS
+app.use(
+  cors({
+    origin: `${process.env.HOST}:${process.env.FRONTEND_PORT}`,
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true,
+    // Add the following line to enable the proxy setting for CORS
+    proxy: true,
+  })
+);
 
 //middlewares
 app.use(cookieParser());
