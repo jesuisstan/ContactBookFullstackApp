@@ -11,7 +11,7 @@ The primary goal of this project was to develop a straightforward CRUD contact d
 
 The project was implemented using functional components and popular hooks in ReactJS with TypeScript and [Create React App](https://facebook.github.io/create-react-app/docs/getting-started), leveraging the Material UI library for its components and styling, in addition to custom CSS modules. The Contact Book App was developed to be responsive, following a multi-platform approach. The following steps were taken to complete the project:
 
-1.  **Backend + MongoDB implementation**: Backend was built with NodeJS and Express server to save time. Database (MongoDB) was attached to backend to store all contacts User would create or modify. Additionally I tried to implement authentication with Github and Google but finally I had to refuse this attempt because did not handle the CORS error (need more time).
+1.  **Backend + MongoDB implementation**: Backend was built with NodeJS and Express server to save time. Database (MongoDB) was attached to backend to store all contacts User would create or modify. Additionally I implemented authentication with email and nickname.
 
 2. **Material UI, Custom Styling with CSS Modules & Custom Fonts**: Material UI components were utilized to achieve a consistent and visually appealing design. Components such as TextField, Drawer, Card and LoadingButton were used to create responsive and user-friendly web-app and related elements. The GTWalsheimPro font was installed and applied to the project to improve attractiveness of the App.
 
@@ -21,11 +21,13 @@ The project was implemented using functional components and popular hooks in Rea
 
 ## Results
 
-Final version of the App allows user to:
+Deployed version of the App allows user to:
 
-- get access to his contact list;
+- get access to his contact list with authentication;
 
-- search for specific contacts by his Lastname;
+- search for specific contact by his Lastname;
+
+- sort existing contacts by Lastnames;
 
 - create a new contact by opening a side panel with empty fields;
 
@@ -42,8 +44,6 @@ https://github.com/jesuisstan/ContactBookFullstackApp/assets/82715902/bc108f24-0
 ## Future Improvements
 
 While the project has been successfully implemented and deployed, there are potential areas for improvement:
-
-- **Authentication**: this would allow to use the App by maltiple persons and provide a more robust and reliable user experience.
 
 - **Unit Testing**: Implementing unit tests for the components and functionality of the Contact Book would help ensure the stability and maintainability of the codebase, allowing for easier future modifications and bug fixes.
 
