@@ -10,11 +10,11 @@
   padding: 12px;
   margin: 5px 0px;
   border-radius: 5px;
-  border: 1px solid var(--BOOK_GREEN);
+  border: 1px solid var(--BOOK_BLACK);
 }
 
 .input:hover {
-  border-color: var(--BOOK_ORANGE);
+  border-color: var(--BOOK_GREEN);
 }
 
 .label {
