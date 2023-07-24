@@ -10,13 +10,6 @@ import MainLayout from './components/Layout/MainLayout';
 import PleaseLogin from './components/Login/PleaseLogin';
 
 const App = () => {
-  //const [user, setUser] = useState<User>({
-  //  id: '1',
-  //  username: 'Stan',
-  //  avatar: '',
-  //  provider: 'fake'
-  //});
-
   const [user, setUser] = useState<User>({
     _id: '',
     nickname: '',
@@ -29,7 +22,6 @@ const App = () => {
     utils.getUserData(setUser);
   }, []);
 
-  console.log(user);
   return (
     <BrowserRouter>
       <div className="App">

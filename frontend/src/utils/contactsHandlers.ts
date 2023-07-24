@@ -10,7 +10,7 @@ function getCookieValue(name: any) {
 
   for (const cookie of cookies) {
     const [cookieName, cookieValue] = cookie.split('=');
-    
+
     if (cookieName === name) {
       return cookieValue;
     }
@@ -18,14 +18,16 @@ function getCookieValue(name: any) {
   return null;
 }
 
-export const getUserData = async (setUser: React.Dispatch<React.SetStateAction<User>>) => {
+export const getUserData = async (
+  setUser: React.Dispatch<React.SetStateAction<User>>
+) => {
   try {
     const response = await axios.get(`${baseUrl}/api/users/getuser`, {
-      withCredentials: true,
+      withCredentials: true
     });
     setUser(response.data);
   } catch (error) {
-    errorAlert('Authentication failed! Try again.');
+    errorAlert('Please login to use Contact Book App');
   }
 };
 
@@ -37,7 +39,9 @@ export const getAllContacts = async ({
   setAllContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
 }) => {
   try {
-    const response = await axios.get<Contact[]>(`${baseUrl}/getall/${user._id}`);
+    const response = await axios.get<Contact[]>(
+      `${baseUrl}/getall/${user._id}`
+    );
     setAllContacts(response.data);
   } catch (error) {
     errorAlert('Error retrieving contacts');
@@ -72,7 +76,7 @@ export const updateContact = async (newContact: Contact) => {
 
 export const searchContactsByLastName = (
   contacts: Contact[],
-  lastName: string,
+  lastName: string
 ): Contact[] => {
   const lowerCaseLastName = lastName.toLowerCase();
 

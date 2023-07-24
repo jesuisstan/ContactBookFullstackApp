@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import FormInput from '../ContactBook/FormInput';
 import styles from '../../styles/ContactForm.module.css';
 import errorAlert from '../../utils/errorAlert';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import LoadingButton from '@mui/lab/LoadingButton';
 import * as MUI from '../../styles/MUIstyles';
 import { User } from '../../types/User';
@@ -45,8 +45,16 @@ const PleaseLogin = ({
       setUser(response.data);
       navigate('/contactbook');
     } catch (error) {
-      setLoadingLogin(false);
-      errorAlert(`Error logging in: ${error}`);
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError;
+        const statusCode = axiosError.response?.status;
+        if (statusCode === 400) errorAlert('Wrong password');
+        else if (statusCode === 404)
+          errorAlert('User with such an email is not found');
+        else errorAlert('Something went wrong');
+
+        setLoadingLogin(false);
+      }
     }
   };
 

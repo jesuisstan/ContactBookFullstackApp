@@ -29,21 +29,11 @@ const connect = () => {
 
 app.use(
   cors({
-    origin: 'http://localhost:3333',
+    origin: '*',
     methods: 'GET,POST,PUT,DELETE',
     credentials: true
   })
 );
-
-// Setup express-session middleware
-//app.use(
-//  session({
-//    secret: 'your-secret-key', // Replace with a strong secret key
-//    resave: false,
-//    saveUninitialized: false,
-//    store: MongoStore.create({ mongoUrl: process.env.MONGO }) // Use MongoDB to store sessions
-//  })
-//);
 
 //middlewares
 app.use(cookieParser());
