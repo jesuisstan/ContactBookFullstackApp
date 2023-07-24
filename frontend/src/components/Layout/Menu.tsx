@@ -59,7 +59,7 @@ const Menu = ({
               <Avatar
                 alt=""
                 src={
-                  user.nickname ? require('../../assets/loggedUser.png') : ''
+                  user.nickname ? require('../../assets/loggedInUser.png') : ''
                 }
               />
             )}
