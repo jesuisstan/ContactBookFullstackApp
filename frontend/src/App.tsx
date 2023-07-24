@@ -13,9 +13,7 @@ const App = () => {
   const [user, setUser] = useState<User>({
     _id: '',
     nickname: '',
-    email: '',
-    avatar: '',
-    provider: ''
+    email: ''
   });
 
   useEffect(() => {

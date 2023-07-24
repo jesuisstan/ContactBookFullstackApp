@@ -10,6 +10,7 @@ const Home = () => {
     <div className={styles.main}>
       <img
         src={require('../assets/contactBook.png')}
+        alt="ContactBook"
         className={styles.picture}
       />
       <div className={styles.textBlock}>

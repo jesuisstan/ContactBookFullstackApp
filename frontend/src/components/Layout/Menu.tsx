@@ -13,9 +13,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import * as utils from '../../utils/authHandlers';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
-import axios from 'axios';
-
-const baseUrl = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
 
 const Menu = ({
   user,
@@ -58,7 +55,14 @@ const Menu = ({
         <div className={styles.right}>
           <div className={styles.userData}>
             {!isSmallScreen && user.nickname}
-            {!isUltraSmallScreen && <Avatar alt="" src={user.avatar} />}
+            {!isUltraSmallScreen && (
+              <Avatar
+                alt=""
+                src={
+                  user.nickname ? require('../../assets/loggedUser.png') : ''
+                }
+              />
+            )}
           </div>
           <div>
             <LoadingButton

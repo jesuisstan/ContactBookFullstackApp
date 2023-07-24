@@ -34,5 +34,5 @@ export const logout = async (
   const response = await axios.get(`/api/auth/logout`, {
     withCredentials: true
   });
-  setUser({ _id: '', nickname: '', email: '', avatar: '', provider: '' });
+  setUser({ _id: '', nickname: '', email: '' });
 };

@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import BarLoader from 'react-spinners/BarLoader';
-import * as colors from '../../styles/bookColors';
 import SignUpModal from './SignUpModal';
 import Stack from '@mui/material/Stack';
 import FormInput from '../ContactBook/FormInput';
-import styles from '../../styles/ContactForm.module.css';
 import errorAlert from '../../utils/errorAlert';
 import axios, { AxiosError } from 'axios';
 import LoadingButton from '@mui/lab/LoadingButton';
-import * as MUI from '../../styles/MUIstyles';
 import { User } from '../../types/User';
-import { useNavigate } from 'react-router-dom';
+import * as colors from '../../styles/bookColors';
+import * as MUI from '../../styles/MUIstyles';
+import styles from '../../styles/ContactForm.module.css';
 
 const PleaseLogin = ({
   setUser
