@@ -29,11 +29,32 @@ const connect = () => {
 
 app.use(
   cors({
-    origin: '*',
+    origin: `${process.env.HOST}:${process.env.FRONTEND_PORT}`,
     methods: 'GET,POST,PUT,DELETE',
-    //credentials: true
+    credentials: true
   })
 );
+
+//// 1. Set up the proxy trust
+//app.set('trust proxy', 1);
+
+//// 2. Set the global prefix
+//app.use('/api', (req, res, next) => {
+//  // This middleware will add the '/api' prefix to all your routes
+//  req.url = '/api' + req.url;
+//  next();
+//});
+
+//// 3. Use the proxy setting in CORS
+//app.use(
+//  cors({
+//    origin: '*',
+//    methods: 'GET,POST,PUT,DELETE',
+//    credentials: true,
+//    // Add the following line to enable the proxy setting for CORS
+//    proxy: true,
+//  })
+//);
 
 //middlewares
 app.use(cookieParser());
@@ -52,7 +73,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log('Server is running on port ' + PORT);
+app.listen(process.env.SERVER_PORT, () => {
+  console.log('Server is running on port ' + process.env.SERVER_PORT);
   connect();
 });
