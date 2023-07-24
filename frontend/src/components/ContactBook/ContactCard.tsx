@@ -34,7 +34,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 const ContactCard = ({
   user,
   contact,
-  setRenderingTrigger,
+  setRenderingTrigger
 }: {
   user: User;
   contact: Contact;

@@ -10,6 +10,7 @@ import styles from '../../styles/Menu.module.css';
 import LoadingButton from '@mui/lab/LoadingButton';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import * as utils from '../../utils/authHandlers';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
 import axios from 'axios';
@@ -28,21 +29,9 @@ const Menu = ({
   const isUltraSmallScreen = useMediaQuery('(max-width:350px)');
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
 
-  //const authenticate = () => {
-  //  if (user._id) {
-  //    window.location.href = `${baseUrl}/api/auth/logout`;
-  //    navigate('/')
-  //  } else {
-  //    navigate('/login');
-  //  }
-  //};
-
   const authenticate = async () => {
     if (user._id) {
-      const response = await axios.get(`${baseUrl}/api/auth/logout`, {
-        withCredentials: true
-      });
-      setUser({ _id: '', nickname: '', email: '', avatar: '', provider: '' });
+      utils.logout(setUser);
       navigate('/');
     } else {
       navigate('/login');

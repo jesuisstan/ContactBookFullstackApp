@@ -5,32 +5,6 @@ import { User } from '../types/User';
 
 const baseUrl = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
 
-function getCookieValue(name: any) {
-  const cookies = document.cookie.split('; ');
-
-  for (const cookie of cookies) {
-    const [cookieName, cookieValue] = cookie.split('=');
-
-    if (cookieName === name) {
-      return cookieValue;
-    }
-  }
-  return null;
-}
-
-export const getUserData = async (
-  setUser: React.Dispatch<React.SetStateAction<User>>
-) => {
-  try {
-    const response = await axios.get(`${baseUrl}/api/users/getuser`, {
-      withCredentials: true
-    });
-    setUser(response.data);
-  } catch (error) {
-    errorAlert('Please login to use Contact Book App');
-  }
-};
-
 export const getAllContacts = async ({
   user,
   setAllContacts
@@ -40,7 +14,7 @@ export const getAllContacts = async ({
 }) => {
   try {
     const response = await axios.get<Contact[]>(
-      `${baseUrl}/getall/${user._id}`
+      `/api/contacts/getall/${user._id}`
     );
     setAllContacts(response.data);
   } catch (error) {
@@ -50,7 +24,7 @@ export const getAllContacts = async ({
 
 export const createContact = async (newContact: Contact) => {
   try {
-    await axios.post<Contact>(`${baseUrl}/save`, newContact);
+    await axios.post<Contact>(`/api/contacts/save`, newContact);
   } catch (error) {
     errorAlert('Error creating contact');
   }
@@ -58,7 +32,7 @@ export const createContact = async (newContact: Contact) => {
 
 export const deleteContact = async (ContactToDelete: Contact) => {
   try {
-    await axios.delete<Contact>(`${baseUrl}/delete`, {
+    await axios.delete<Contact>(`/api/contacts/delete`, {
       data: { _id: ContactToDelete!._id }
     });
   } catch (error) {
@@ -68,7 +42,7 @@ export const deleteContact = async (ContactToDelete: Contact) => {
 
 export const updateContact = async (newContact: Contact) => {
   try {
-    await axios.post<Contact>(`${baseUrl}/update`, newContact);
+    await axios.post<Contact>(`/api/contacts/update`, newContact);
   } catch (error) {
     errorAlert('Error updating contact');
   }

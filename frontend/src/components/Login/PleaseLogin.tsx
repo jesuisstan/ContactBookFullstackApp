@@ -13,8 +13,6 @@ import * as MUI from '../../styles/MUIstyles';
 import { User } from '../../types/User';
 import { useNavigate } from 'react-router-dom';
 
-const baseUrl = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
-
 const PleaseLogin = ({
   setUser
 }: {
@@ -39,7 +37,7 @@ const PleaseLogin = ({
     e.preventDefault();
     setLoadingLogin(true);
     try {
-      const response = await axios.post(`${baseUrl}/api/auth/signin`, values, {
+      const response = await axios.post(`/api/auth/signin`, values, {
         withCredentials: true
       });
       setUser(response.data);

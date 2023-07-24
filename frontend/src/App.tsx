@@ -4,7 +4,7 @@ import Home from './pages/Home.page';
 import ContactBook from './components/ContactBook/ContactBook';
 import NotFound from './pages/NotFound.page';
 import { User } from './types/User';
-import * as utils from './utils/contactsHandlers';
+import * as utils from './utils/authHandlers';
 import './styles/index.css';
 import MainLayout from './components/Layout/MainLayout';
 import PleaseLogin from './components/Login/PleaseLogin';
