@@ -69,10 +69,15 @@ const ContactForm = ({
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value.replace(/\s/g, '')
-    });
+    event.target.name !== 'comment'
+      ? setValues({
+          ...values,
+          [event.target.name]: event.target.value.replace(/\s/g, '')
+        })
+      : setValues({
+          ...values,
+          [event.target.name]: event.target.value
+        });
   };
 
   return (
