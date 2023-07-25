@@ -1,6 +1,6 @@
 # Project Documentation: Contact Book Fullstack App
 
-The deployed project can be accessed at http://157.230.26.202:3333/. \
+The deployed project can be accessed at http://209.38.216.33:3333/. \
 The source code with explanatory comments is available on GitHub [repository](https://github.com/jesuisstan/ContactBookFullstackApp).
 
 ## Objective
@@ -15,7 +15,7 @@ The project was implemented using functional components and popular hooks in Rea
 
 2. **Material UI, Custom Styling with CSS Modules & Custom Fonts**: Material UI components were utilized to achieve a consistent and visually appealing design. Components such as TextField, Drawer, Card and LoadingButton were used to create responsive and user-friendly web-app and related elements. The GTWalsheimPro font was installed and applied to the project to improve attractiveness of the App.
 
-3. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the [URL](http://157.230.26.202:3333/).
+3. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the [URL](http://209.38.216.33:3333/).
 
 4. **Version Control**: The code was hosted on GitHub and made publicly accessible. The repository can be found at https://github.com/jesuisstan/ContactBookFullstackApp.
 
@@ -52,14 +52,53 @@ While the project has been successfully implemented and deployed, there are pote
 By addressing these areas for improvement, the project can be further optimized and polished, providing an even better user experience.
 
 ## How to use
-1. install all the dependencies according to 'package.json' file from the root dir:
+##### 1. Adjust backend/.env and frontend/.env files if you need other HOST, PORT or MONGO vars.
+##### 2. Adjust "proxy" line in frontend/package.json file so that it points to your Server
+
+##### 3. Run the App:
+a) with Docker:
+- create docke image:
+```sh
+docker build -t contact-book-app .
+```
+
+- Start Contact Book Fullstack App:
+```sh
+docker run -p 9999:9999 -p 3333:3333 contact-book-app
+```
+OR
+
+b) with NPM:
+- install all the dependencies according to 'package.json' file from the root dir:
 ```sh
 npm install
 ```
 
-2. Start Contact Book Fullstack App:
+- Start Contact Book Fullstack App:
 ```sh
 npm start
 ```
 
-3. Open [http://localhost:3333](http://localhost:3333) to view the App in browser.
+##### 4. Open the App link in browser ([http://localhost:3333](http://localhost:3333) or [http://209.38.216.33:3333](http://209.38.216.33:3333) by default).
+
+##### 5. Additional commands:
+- to list all Docker container:
+```sh
+docker ps -a
+```
+- to list all Docker images:
+```sh
+docker images
+```
+- to stop all running containers:
+```sh
+docker stop $(docker ps -q)
+```
+- to remove all stopped containers:
+```sh
+docker rm $(docker ps -a -q)
+```
+- to delete all Docker images
+```sh
+docker rmi $(docker images -q)
+```
