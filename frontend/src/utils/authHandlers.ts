@@ -24,7 +24,9 @@ export const getUserData = async (
     });
     setUser(response.data);
   } catch (error) {
-    errorAlert('Please login to use Contact Book App');
+    errorAlert(
+      `Please login to use Contact Book App (use "test@test.com" as login & "test1!" as password)`
+    );
   }
 };
 
