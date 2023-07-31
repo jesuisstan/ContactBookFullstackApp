@@ -2,7 +2,7 @@
   "name": "contact-book-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://209.38.216.33:9999",
+  "proxy": "http://209.38.216.33:103002",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
