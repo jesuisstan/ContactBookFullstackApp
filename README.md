@@ -38,7 +38,7 @@ Deployed version of the App allows user to:
 ## Demonstration
 
 
-https://github.com/jesuisstan/ContactBookFullstackApp/assets/82715902/bc108f24-05cf-4a7a-8ff9-b05992d08b6a
+https://github.com/jesuisstan/ContactBookFullstackApp/assets/82715902/d14c5aaa-026e-4cfb-b397-e2de5dbb1d92
 
 
 ## Future Improvements
