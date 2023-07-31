@@ -2,7 +2,7 @@
   "name": "contact-book-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://209.38.216.33:103002",
+  "proxy": "http://209.38.216.33:9999",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -38,7 +38,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env PORT=3333 react-scripts start",
+    "start": "cross-env PORT=9000 react-scripts start",
     "build": "react-scripts build && serve -s build -l 9999",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
