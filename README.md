@@ -1,6 +1,6 @@
 # Project Documentation: Contact Book Fullstack App
 
-The deployed project can be accessed at http://209.38.216.33:9000/. \
+The deployed project can be accessed at http://209.38.216.33:9090/. \
 The source code with explanatory comments is available on GitHub [repository](https://github.com/jesuisstan/ContactBookFullstackApp).
 
 ## Objective
@@ -15,7 +15,7 @@ The project was implemented using functional components and popular hooks in Rea
 
 2. **Material UI, Custom Styling with CSS Modules & Custom Fonts**: Material UI components were utilized to achieve a consistent and visually appealing design. Components such as TextField, Drawer, Card and LoadingButton were used to create responsive and user-friendly web-app and related elements. The GTWalsheimPro font was installed and applied to the project to improve attractiveness of the App.
 
-3. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the [URL](http://209.38.216.33:9000/).
+3. **Deployment**: The code was deployed on a Digital Ocean web server and made accessible through the [URL](http://209.38.216.33:9090/).
 
 4. **Version Control**: The code was hosted on GitHub and made publicly accessible. The repository can be found at https://github.com/jesuisstan/ContactBookFullstackApp.
 
@@ -64,7 +64,7 @@ docker build -t contact-book-app .
 
 - Start Contact Book Fullstack App:
 ```sh
-docker run -p 9999:9999 -p 9000:9000 contact-book-app
+docker run -p 9999:9999 -p 9090:9090 contact-book-app
 ```
 OR
 
@@ -79,7 +79,7 @@ npm install
 npm start
 ```
 
-##### 4. Open the App link in browser ([http://localhost:9000](http://localhost:9000) or [http://209.38.216.33:9000](http://209.38.216.33:9000) by default).
+##### 4. Open the App link in browser ([http://localhost:9090](http://localhost:9090) or [http://209.38.216.33:9090](http://209.38.216.33:9090) by default).
 
 ##### 5. Additional commands:
 - to list all Docker container:

@@ -24,37 +24,38 @@ const connect = () => {
     });
 };
 
-//app.use(
-//  cors({
-//    origin: `${process.env.HOST}:${process.env.FRONTEND_PORT}`,
-//    methods: 'GET,POST,PUT,DELETE',
-//    credentials: true
-//  })
-//);
+// Configure CORS middleware
+app.use(
+  cors({
+    origin: `${process.env.REACT_APP_HOST}:${process.env.FRONTEND_PORT}`,
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true,
+  })
+);
 
-//middlewares
+// Middlewares
 app.use(cookieParser());
 
 app.use('/api/check', (req, res) => {
-  res.send("Hello from ContactBookApp server")
+  res.send("Hello from ContactBookApp server");
 });
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/contacts', contactsRoutes);
 
-//error handler
+// Error handler
 app.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || 'Something went wrong!';
   return res.status(status).json({
     success: false,
     status,
-    message
+    message,
   });
 });
 
-app.listen(process.env.SERVER_PORT, () => {
-  console.log('Server is running on port ' + process.env.SERVER_PORT);
+app.listen(process.env.REACT_APP_SERVER_PORT, () => {
+  console.log('Server is running on port ' + process.env.REACT_APP_SERVER_PORT);
   connect();
 });

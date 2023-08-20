@@ -62,6 +62,13 @@ const PleaseLogin = ({
     setValues({ ...values, [name]: trimmedValue });
   };
 
+  const testLogin = () => {
+    setValues({
+      email: process.env.REACT_APP_TEST_EMAIL!,
+      password: process.env.REACT_APP_TEST_PASSWORD!
+    });
+  };
+
   return loading ? (
     <div
       style={{
@@ -145,16 +152,28 @@ const PleaseLogin = ({
             >
               Log In
             </LoadingButton>
+
             <LoadingButton
               type="submit"
+              loading={loadingLogin}
               variant="contained"
               color="inherit"
               sx={MUI.LoadButton}
-              onClick={() => setSignUpOpen(true)}
+              onClick={testLogin}
+              startIcon={<ErrorOutlineIcon />}
             >
-              Sign Up
+              Test Login
             </LoadingButton>
           </form>
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            color="inherit"
+            sx={{ ...MUI.LoadButton, width: '87%' }}
+            onClick={() => setSignUpOpen(true)}
+          >
+            Sign Up
+          </LoadingButton>
         </div>
       </Stack>
     </div>
