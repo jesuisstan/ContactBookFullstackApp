@@ -52,19 +52,17 @@ While the project has been successfully implemented and deployed, there are pote
 By addressing these areas for improvement, the project can be further optimized and polished, providing an even better user experience.
 
 ## How to use
-##### 1. Adjust backend/.env and frontend/.env files if you need other HOST, PORT or MONGO vars.
-##### 2. Adjust "proxy" line in frontend/package.json file so that it points to your Server
+##### 1. Adjust .env file if you need other HOST, PORT, MONGO or other vars.
+##### 2. Adjust "proxy" line in frontend/package.json file so that it points to your Server.\
+For example:
+- "proxy": "http://backend:4444" (if you use docker compose to run the App)
+- "proxy": "http://localhost:4444" (if you use npm)
 
 ##### 3. Run the App:
 a) with Docker:
-- create docke image:
+- run docker compose project:
 ```sh
-docker build -t contact-book-app .
-```
-
-- Start Contact Book Fullstack App:
-```sh
-docker run -p 9999:9999 -p 9090:9090 contact-book-app
+docker compose up
 ```
 OR
 
