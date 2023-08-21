@@ -64,6 +64,7 @@ a) with Docker:
 ```sh
 docker compose up
 ```
+
 OR
 
 b) with NPM:
