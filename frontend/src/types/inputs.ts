@@ -4,7 +4,7 @@ export const inputs = [
     name: 'firstName',
     type: 'text',
     placeholder: 'First name',
-    errorMessage: 'Max 20 characters. Allowed: A-Z a-z',
+    errorMessage: 'Max 20 characters. Allowed: a-Z',
     label: '* First name',
     pattern: '^[A-Za-z]{1,20}$',
     required: true
@@ -14,7 +14,7 @@ export const inputs = [
     name: 'lastName',
     type: 'text',
     placeholder: 'Last name',
-    errorMessage: 'Max 20 characters. Allowed: A-Z a-z',
+    errorMessage: 'Max 20 characters. Allowed: a-Z',
     label: '* Last name',
     pattern: '^[A-Za-z]{1,20}$',
     required: true

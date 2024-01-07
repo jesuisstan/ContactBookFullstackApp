@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   width: 280px;
+  position: relative; /* To position the error message */
+  margin-bottom: 10px;
 }
 
 .input {
@@ -19,6 +21,7 @@
 
 .label {
   font-size: 12px;
+  letter-spacing: 0.1rem;
   color: var(--BOOK_GREEN);
 }
 
@@ -27,6 +30,8 @@
   padding: 3px;
   color: var(--BOOK_ORANGE);
   display: none;
+  position: absolute;
+  bottom: -18px;
 }
 
 /*input:invalid[focused='true'] {

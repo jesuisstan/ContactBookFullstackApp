@@ -95,7 +95,8 @@ const SignUpModal = ({
                   errorMessage: 'Max 20 characters. Allowed: A-Z a-z 0-9',
                   label: 'Nickname',
                   pattern: '^[A-Za-z0-9]{1,20}$',
-                  required: true
+                  required: true,
+                  autoComplete: 'off'
                 }}
                 value={values.nickname}
                 onChange={onChange}

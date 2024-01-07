@@ -20,7 +20,9 @@ const FormInput = (props: any) => {
         focused={focused.toString()}
         className={styles.input}
       />
-      <span className={styles.helper}>{errorMessage}</span>
+      <span className={`${styles.helper} ${errorMessage ? styles.error : ''}`}>
+        {errorMessage || '\u00A0'} {/* Invisible placeholder */}
+      </span>
     </div>
   );
 };

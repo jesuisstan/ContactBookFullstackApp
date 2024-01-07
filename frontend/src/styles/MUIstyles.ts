@@ -23,7 +23,6 @@ export const modalHeader = {
   letterSpacing: '0.02857em',
   textAlign: 'center',
   fontWeight: 'bold',
-  paddingBottom: '18px'
 };
 
 export const modalClose = {

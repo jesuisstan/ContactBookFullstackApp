@@ -55,8 +55,8 @@ By addressing these areas for improvement, the project can be further optimized 
 ##### 1. Adjust .env file if you need other HOST, PORT, MONGO or other vars.
 ##### 2. Adjust "proxy" line in frontend/package.json file so that it points to your Server.\
 For example:
-- "proxy": "http://backend:4444" (if you use docker compose to run the App)
-- "proxy": "http://localhost:4444" (if you use npm)
+- "proxy": "http://backend:9999" (if you use docker compose to run the App)
+- "proxy": "http://localhost:9999" (if you use npm)
 
 ##### 3. Run the App:
 a) with Docker:
