@@ -23,6 +23,18 @@ const Footer: React.FC = () => {
           >
             @github
           </a>
+          <>
+            {' '}
+            | Made by{' '}
+            <a
+              href="https://www.krivtsoff.site/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.footerLink}
+            >
+              Stanislav Krivtsov
+            </a>
+          </>
         </p>
       </footer>
     </div>

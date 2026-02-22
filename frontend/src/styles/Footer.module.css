@@ -26,4 +26,5 @@
 .footerLink:link,
 .footerLink:visited {
   font-size: 10px;
+  text-decoration: underline;
 }
