@@ -8,10 +8,12 @@
 /backend/node_modules
 /node_modules
 
-##env
+#env
 .env
 /backend/.env
 /frontend/.env
+# Keep .env.example file for reference
+!.env.example
 
 # dependencies
 /.pnp
