@@ -15,7 +15,7 @@ import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
 import styles from '../../styles/ContactForm.module.css';
 
-const baseUrl = `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}`;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}`;
 
 const SignUpModal = ({
   open,
@@ -38,7 +38,7 @@ const SignUpModal = ({
 
     setLoad(true);
     try {
-      await axios.post(`${baseUrl}/api/auth/signup`, values, {
+      await axios.post(`${BACKEND_URL}/api/auth/signup`, values, {
         withCredentials: true
       });
       setOpen(false);

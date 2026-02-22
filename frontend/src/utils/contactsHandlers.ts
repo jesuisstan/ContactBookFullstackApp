@@ -3,8 +3,6 @@ import errorAlert from './errorAlert';
 import { Contact } from '../types/Contact';
 import { User } from '../types/User';
 
-const baseUrl = `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}`;
-
 export const getAllContacts = async ({
   user,
   setAllContacts

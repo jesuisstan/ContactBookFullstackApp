@@ -24,12 +24,40 @@ const connect = () => {
     });
 };
 
+// Configure CORS allowed origins
+const getAllowedOrigins = () => {
+  const origins = [];
+
+  // Add FRONTEND_URL if provided (for production like Render.com)
+  if (process.env.FRONTEND_URL) {
+    origins.push(process.env.FRONTEND_URL);
+  }
+
+  // Add localhost origins for local development
+  if (process.env.FRONTEND_PORT) {
+    origins.push(`http://localhost:${process.env.FRONTEND_PORT}`);
+  }
+
+  // Add host-based origin if FRONTEND_URL is not set (backward compatibility)
+  if (
+    !process.env.FRONTEND_URL &&
+    process.env.REACT_APP_HOST &&
+    process.env.FRONTEND_PORT
+  ) {
+    origins.push(
+      `http://${process.env.REACT_APP_HOST}:${process.env.FRONTEND_PORT}`
+    );
+  }
+
+  return origins.length > 0 ? origins : ['http://localhost:4040'];
+};
+
 // Configure CORS middleware
 app.use(
   cors({
-    origin: `${process.env.REACT_APP_HOST}:${process.env.FRONTEND_PORT}`,
+    origin: getAllowedOrigins(),
     methods: 'GET,POST,PUT,DELETE',
-    credentials: true,
+    credentials: true
   })
 );
 
@@ -37,7 +65,7 @@ app.use(
 app.use(cookieParser());
 
 app.use('/api/check', (req, res) => {
-  res.send("Hello from ContactBookApp server");
+  res.send('Hello from ContactBookApp server');
 });
 
 app.use('/api/auth', authRoutes);
@@ -51,7 +79,7 @@ app.use((err, req, res, next) => {
   return res.status(status).json({
     success: false,
     status,
-    message,
+    message
   });
 });
 
