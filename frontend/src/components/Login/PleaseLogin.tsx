@@ -6,6 +6,7 @@ import SignUpModal from './SignUpModal';
 import Stack from '@mui/material/Stack';
 import FormInput from '../ContactBook/FormInput';
 import errorAlert from '../../utils/errorAlert';
+import api from '../../utils/api';
 import axios, { AxiosError } from 'axios';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { User } from '../../types/User';
@@ -37,9 +38,7 @@ const PleaseLogin = ({
     e.preventDefault();
     setLoadingLogin(true);
     try {
-      const response = await axios.post(`/api/auth/signin`, values, {
-        withCredentials: true
-      });
+      const response = await api.post(`/api/auth/signin`, values);
       setUser(response.data);
       navigate('/contactbook');
     } catch (error) {

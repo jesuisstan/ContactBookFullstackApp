@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './api';
 import errorAlert from './errorAlert';
 import { Contact } from '../types/Contact';
 import { User } from '../types/User';
@@ -11,7 +11,7 @@ export const getAllContacts = async ({
   setAllContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
 }) => {
   try {
-    const response = await axios.get<Contact[]>(
+    const response = await api.get<Contact[]>(
       `/api/contacts/getall/${user._id}`
     );
     setAllContacts(response.data);
@@ -22,7 +22,7 @@ export const getAllContacts = async ({
 
 export const createContact = async (newContact: Contact) => {
   try {
-    await axios.post<Contact>(`/api/contacts/save`, newContact);
+    await api.post<Contact>(`/api/contacts/save`, newContact);
   } catch (error) {
     errorAlert('Error creating contact');
   }
@@ -30,7 +30,7 @@ export const createContact = async (newContact: Contact) => {
 
 export const deleteContact = async (ContactToDelete: Contact) => {
   try {
-    await axios.delete<Contact>(`/api/contacts/delete`, {
+    await api.delete<Contact>(`/api/contacts/delete`, {
       data: { _id: ContactToDelete!._id }
     });
   } catch (error) {
@@ -40,7 +40,7 @@ export const deleteContact = async (ContactToDelete: Contact) => {
 
 export const updateContact = async (newContact: Contact) => {
   try {
-    await axios.post<Contact>(`/api/contacts/update`, newContact);
+    await api.post<Contact>(`/api/contacts/update`, newContact);
   } catch (error) {
     errorAlert('Error updating contact');
   }

@@ -1,6 +1,6 @@
 # Project Documentation: Contact Book Fullstack App
 
-The deployed project can be accessed at https://contact-book-frontend.onrender.com \
+The deployed project can be accessed at https://contact-book-frontend-1n4u.onrender.com \
 The source code with explanatory comments is available on GitHub [repository](https://github.com/jesuisstan/ContactBookFullstackApp).
 
 ## Objective

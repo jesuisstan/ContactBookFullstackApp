@@ -41,6 +41,7 @@
     "start": "cross-env PORT=9090 DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
     "build": "react-scripts build",
     "serve": "serve -s build -l 9090",
+    "start:prod": "npm run build && npm run serve",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

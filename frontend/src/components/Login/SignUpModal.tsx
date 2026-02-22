@@ -8,14 +8,12 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import FormInput from '../ContactBook/FormInput';
 import { LoginFormValues } from '../../types/LoginFormValues';
-import axios from 'axios';
+import api from '../../utils/api';
 import errorAlert from '../../utils/errorAlert';
 import saveAlert from '../../utils/saveAlert';
 import * as MUI from '../../styles/MUIstyles';
 import * as colors from '../../styles/bookColors';
 import styles from '../../styles/ContactForm.module.css';
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_SERVER_PORT}`;
 
 const SignUpModal = ({
   open,
@@ -38,9 +36,7 @@ const SignUpModal = ({
 
     setLoad(true);
     try {
-      await axios.post(`${BACKEND_URL}/api/auth/signup`, values, {
-        withCredentials: true
-      });
+      await api.post(`/api/auth/signup`, values);
       setOpen(false);
       setLoad(false);
       saveAlert();
