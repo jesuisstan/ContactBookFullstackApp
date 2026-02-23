@@ -1,15 +1,21 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import userRoutes from './routes/usersRoute.js';
 import authRoutes from './routes/authRoute.js';
 import contactsRoutes from './routes/contactsRoute.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 
-dotenv.config();
+// Load .env from root folder
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 app.use(express.json());
 
@@ -87,3 +93,39 @@ app.listen(process.env.REACT_APP_SERVER_PORT, () => {
   console.log('Server is running on port ' + process.env.REACT_APP_SERVER_PORT);
   connect();
 });
+
+
+// Keep-alive ping to prevent Render.com from sleeping
+const ping = async (url) => {
+  try {
+    await fetch(url);
+    console.log(`Ping success: ${url}`);
+  } catch (error) {
+    console.error(`Ping failed: ${url}`, error);
+  }
+};
+
+// Start keep-alive pings every 5 minutes
+const startKeepAlive = () => {
+  const frontendUrl = process.env.FRONTEND_URL;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL 
+    ? `${process.env.REACT_APP_BACKEND_URL}/api/check`
+    : `http://localhost:${process.env.REACT_APP_SERVER_PORT || 9999}/api/check`;
+
+  if (frontendUrl || process.env.NODE_ENV === 'production') {
+    setInterval(() => {
+      if (frontendUrl) {
+        ping(frontendUrl);
+      }
+      ping(backendUrl);
+    }, 5 * 60 * 1000); // every 5 minutes
+    
+    console.log('Keep-alive ping started (every 5 minutes)');
+    if (frontendUrl) {
+      console.log(`Frontend URL: ${frontendUrl}`);
+    }
+    console.log(`Backend URL: ${backendUrl}`);
+  }
+};
+
+startKeepAlive();

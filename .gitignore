@@ -15,14 +15,6 @@
 # Keep .env.example file for reference
 !.env.example
 
-# dependencies
-/.pnp
-.pnp.js
-/frontend/package-lock.json
-/backend/package-lock.json
-/backend/yarn.lock
-package-lock.json
-
 # testing
 /coverage
 
